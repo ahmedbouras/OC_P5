@@ -11,7 +11,7 @@
 <body>
     <div class="container-fluid">
 
-        <?php include 'view/header.php' ?>
+        <?php include 'view/header.php'; ?>
 
         <div id="hero-image" class="row">
             <div class="col-12 align-self-center">
@@ -58,6 +58,8 @@
                 </form>
             </div>
         </section>
+
+        <?php include 'view/footer.php'; ?>
                 
     </div>
 

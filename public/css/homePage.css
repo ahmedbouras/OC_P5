@@ -80,3 +80,19 @@ p {
     width: 180px;
     margin-bottom: 100px;
 }
+
+/* FOOTER */
+footer {
+    height: 100px;
+}
+footer li{
+    list-style: none;
+}
+footer a {
+    color: black;
+    margin-right: 20px;
+}
+footer a:hover {
+    color: #536dfe;
+    text-decoration: none;
+}
