@@ -46,6 +46,18 @@
                 <img src="public/images/multiple-devices-resized.png" alt="">
             </div>
         </section>
+
+        <section id="contact-form" class="row">
+            <div class="offset-4 col-4 text-center">
+                <form action="" method="post">
+                    <h3>Contactez-moi</h3>
+                    <input type="text" name="name" class="form-control" placeholder="Nom" required>
+                    <input type="email" name="email" class="form-control" placeholder="E-mail" required>
+                    <textarea name="message" class="form-control" cols="30" rows="5" placeholder="Message" required></textarea>
+                    <button type="submit" class="btn btn-primary-custom btn-form">Envoyer</button>
+                </form>
+            </div>
+        </section>
                 
     </div>
 
