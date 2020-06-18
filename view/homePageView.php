@@ -12,6 +12,17 @@
     <div class="container-fluid">
 
         <?php include 'view/header.php' ?>
+
+        <div id="hero-image" class="row">
+            <div class="col-12 align-self-center">
+                <div id="hero-text">
+                    <h1>Besoin d'un<br>site internet ?</h1>
+                    <h2>Ahmed Bouras</h2>
+                    <h2>Développeur Web</h2>
+                    <a class="btn btn-primary-custom" href="#" role="button">Me contacter</a>
+                </div>
+            </div>
+        </div>
                 
     </div>
 

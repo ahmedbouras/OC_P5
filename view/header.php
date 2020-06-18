@@ -1,5 +1,5 @@
 <header class="row">
-    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-white col-12">
+    <nav class="col-12 navbar fixed-top navbar-expand-lg navbar-light bg-white">
         <a class="navbar-brand" href="#">BRAND</a>
 
         <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
