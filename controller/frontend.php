@@ -2,5 +2,5 @@
 
 function homePage()
 {
-    require 'view/homePageView.php';
+    require 'view/homeView.php';
 }
