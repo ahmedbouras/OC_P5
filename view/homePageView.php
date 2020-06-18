@@ -23,6 +23,29 @@
                 </div>
             </div>
         </div>
+
+        <section id="first-section" class="row">
+            <div class="col-6 text-center align-self-center">
+                <img src="public/images/client-and-i-resized.png" alt="">
+            </div>
+            <div class="col-5 text-center align-self-center">
+                <h3>Votre site selon vos envies</h3>
+                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, 
+                sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, 
+                sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.</p>
+            </div>
+        </section>
+        <section id="second-section" class="row">
+            <div class="offset-1 col-5 text-center align-self-center">
+                <h3>Accessible sur tous types d'écran</h3>
+                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, 
+                sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, 
+                sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.</p>
+            </div>
+            <div class="col-6 text-center align-self-center">
+                <img src="public/images/multiple-devices-resized.png" alt="">
+            </div>
+        </section>
                 
     </div>
 

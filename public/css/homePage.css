@@ -46,3 +46,20 @@ h2:first-of-type {
     background-color: #536dfe;
     color: white;
 }
+
+/* SERVICES */
+#first-section {
+    background-color: #FDFDFD;
+    height: 600px;
+}
+#second-section {
+    height: 600px;
+}
+h3 {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 22px;
+}
+p {
+    font-family: 'Lato', sans-serif;
+    font-size: 16px;
+}
