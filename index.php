@@ -1,4 +1,11 @@
 <?php
 require 'controller/frontend.php';
 
-homePage();
+if(isset($_GET['blog']))
+{
+    blog();
+}
+else
+{
+    home();
+}
