@@ -38,7 +38,7 @@
         <?= $content ?>
 
         <footer class="row">
-            <div class="col-6 align-self-center">
+            <div class="col-md-6 align-self-center">
                 <ul class="d-flex justify-content-center">
                     <li>
                         <a href="">Mon CV</a>
@@ -48,8 +48,8 @@
                     </li>
                 </ul>
             </div>
-            <div class="col-5 align-self-center">
-                <div id="follow-me" class="d-flex justify-content-center">
+            <div class="col-md-5 align-self-center">
+                <div class="d-flex justify-content-center">
                     <p>Retrouvez-moi sur :</p>
                     <ul class="d-flex">
                         <li>

@@ -10,7 +10,7 @@ ob_start()
             <h1>Besoin d'un<br>site internet ?</h1>
             <h2>Ahmed Bouras</h2>
             <h2>Développeur Web</h2>
-            <a class="btn btn-primary-custom" href="#" role="button">Me contacter</a>
+            <a class="btn btn-primary-custom" href="index.php#contact-form" role="button">Me contacter</a>
         </div>
     </div>
 </div>

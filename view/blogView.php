@@ -6,7 +6,7 @@ ob_start()
 
 <div class="row">
     <div id="bloc-title" class="col-12 d-flex align-items-center justify-content-center">
-        <h1 class="">Blog</h1>
+        <h1>Blog</h1>
     </div>
 </div>
 <div class="row">
@@ -17,7 +17,7 @@ ob_start()
                 <p class="card-text">Ceci est le chapô de mon article.
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 </p>
-                <a href="#" class="btn btn-primary-custom">Voir l'article</a>
+                <a href="index.php?post" class="btn btn-primary-custom">Voir l'article</a>
             </div>
             <div class="card-footer text-muted">
                 Mis à jour le 10/05/2019
@@ -29,7 +29,7 @@ ob_start()
                 <p class="card-text">Ceci est le chapô de mon article.
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 </p>
-                <a href="#" class="btn btn-primary-custom">Voir l'article</a>
+                <a href="index.php?post" class="btn btn-primary-custom">Voir l'article</a>
             </div>
             <div class="card-footer text-muted">
                 Mis à jour le 10/05/2019
@@ -41,7 +41,7 @@ ob_start()
                 <p class="card-text">Ceci est le chapô de mon article.
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 </p>
-                <a href="#" class="btn btn-primary-custom">Voir l'article</a>
+                <a href="index.php?post" class="btn btn-primary-custom">Voir l'article</a>
             </div>
             <div class="card-footer text-muted">
                 Mis à jour le 10/05/2019
@@ -53,7 +53,7 @@ ob_start()
                 <p class="card-text">Ceci est le chapô de mon article.
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 </p>
-                <a href="#" class="btn btn-primary-custom">Voir l'article</a>
+                <a href="index.php?post" class="btn btn-primary-custom">Voir l'article</a>
             </div>
             <div class="card-footer text-muted">
                 Mis à jour le 10/05/2019
@@ -65,7 +65,7 @@ ob_start()
                 <p class="card-text">Ceci est le chapô de mon article.
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 </p>
-                <a href="#" class="btn btn-primary-custom">Voir l'article</a>
+                <a href="index.php?post" class="btn btn-primary-custom">Voir l'article</a>
             </div>
             <div class="card-footer text-muted">
                 Mis à jour le 10/05/2019
@@ -77,7 +77,7 @@ ob_start()
                 <p class="card-text">Ceci est le chapô de mon article.
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 </p>
-                <a href="#" class="btn btn-primary-custom">Voir l'article</a>
+                <a href="index.php?post" class="btn btn-primary-custom">Voir l'article</a>
             </div>
             <div class="card-footer text-muted">
                 Mis à jour le 10/05/2019
