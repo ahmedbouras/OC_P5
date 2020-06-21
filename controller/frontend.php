@@ -16,3 +16,7 @@ function post()
 {
     require 'view/postView.php';
 }
+function adminInterface()
+{
+    require 'view/adminInterfaceView.php';
+}

@@ -9,6 +9,10 @@ elseif(isset($_GET['post']))
 {
     post();
 }
+elseif(isset($_GET['admin']))
+{
+    adminInterface();
+}
 else
 {
     home();

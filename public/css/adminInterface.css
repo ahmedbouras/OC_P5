@@ -1,0 +1,17 @@
+#bloc-logo {
+    height: 30vh;
+}
+#bloc-connexion {
+    height: 50vh;
+}
+.card {
+    padding: 40px;
+}
+.btn-primary-custom {
+    background-color: #536dfe;
+    color: white;
+}
+.btn-primary-custom:hover {
+    background-color: #536dfeda;
+    color: white;
+}

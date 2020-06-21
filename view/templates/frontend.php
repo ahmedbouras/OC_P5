@@ -44,7 +44,7 @@
                         <a href="">Mon CV</a>
                     </li>
                     <li>
-                        <a href=""> Interface Admin</a>
+                        <a href="index.php?admin"> Interface Admin</a>
                     </li>
                 </ul>
             </div>
