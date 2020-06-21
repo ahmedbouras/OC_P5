@@ -28,7 +28,7 @@
                             <a class="nav-link" href="index.php?blog">Blog</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Contact</a>
+                            <a class="nav-link" href="index.php#contact-form">Contact</a>
                         </li>
                     </ul>
                 </div>
