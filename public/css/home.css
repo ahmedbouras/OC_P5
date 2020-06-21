@@ -19,6 +19,23 @@ h2 {
 h2:first-of-type {
     margin-top: 50px;
 }
+@media all and (max-width: 991px) {
+    #hero-image {
+        background-color: white;
+        height: 100vh;
+    }
+    #hero-text {
+        margin-left: 20px;
+    }
+    h1 {
+        font-size: 50px;
+    }
+}
+@media all and (max-width: 600px) {
+    #hero-image {
+        background-image: none;
+    }
+}
 
 /* SERVICES */
 #first-section {
@@ -27,6 +44,14 @@ h2:first-of-type {
 }
 #second-section {
     height: 600px;
+}
+@media all and (max-width: 768px) {
+    #first-section {
+        height: 300px;
+    }
+    #second-section {
+        height: 300px;
+    }
 }
 h3 {
     font-size: 22px;

@@ -39,10 +39,10 @@ footer {
 }
 footer li{
     list-style: none;
+    margin-right: 20px;
 }
 footer a {
     color: black;
-    margin-right: 20px;
 }
 footer a:hover {
     color: #536dfe;

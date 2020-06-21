@@ -48,18 +48,16 @@
                     </li>
                 </ul>
             </div>
-            <div class="col-md-5 align-self-center">
-                <div class="d-flex justify-content-center">
-                    <p>Retrouvez-moi sur :</p>
-                    <ul class="d-flex">
-                        <li>
-                            <a href="">Linkedin</a>
-                        </li>
-                        <li>
-                            <a href="">Github</a>
-                        </li>
-                    </ul>
-                </div>
+            <div class="col-md-6 align-self-center">
+                <ul class="d-flex justify-content-center">
+                    <li>Retrouvez-moi sur :</li>
+                    <li>
+                        <a href="https://www.linkedin.com/in/ahmed-bouras/" target="blank">Linkedin</a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/ahmedbrs" target="blank">Github</a>
+                    </li>
+                </ul>
             </div>
         </footer>
                 

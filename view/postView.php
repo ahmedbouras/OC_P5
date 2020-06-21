@@ -33,8 +33,8 @@ ob_start()
     <div class="col-md-8 offset-md-2 text-center">
         <form action="" method="post">
             <h3>Laisser un commentaire</h3>
-            <input type="text" name="pseudo" class="form-control" placeholder="Votre Nom" required>
-            <textarea name="comment" class="form-control" cols="30" rows="5" placeholder="Votre commentaire" required></textarea>
+            <input type="text" name="pseudo" class="form-control" placeholder="Nom" required>
+            <textarea name="comment" class="form-control" cols="30" rows="5" placeholder="Commentaire" required></textarea>
             <button type="submit" class="btn btn-primary-custom btn-form">Envoyer</button>
         </form>
     </div>
