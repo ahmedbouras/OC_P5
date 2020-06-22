@@ -5,8 +5,8 @@ spl_autoload_register(function ($className)
 });
 require 'controller/frontend.php';
 require 'controller/backend.php';
-dashboard();
-/*if(isset($_GET['blog']))
+
+if(isset($_GET['blog']))
 {
     blog();
 }
@@ -20,9 +20,13 @@ elseif(isset($_GET['admin']))
 }
 elseif(isset($_GET['dashboard']))
 {
-
+    dashboard();
+}
+elseif(isset($_GET['dashboardPost']))
+{
+    dashboardPost();
 }
 else
 {
     home();
-}*/
+}

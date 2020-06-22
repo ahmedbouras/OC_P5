@@ -19,10 +19,10 @@ ob_start()
                 <p>Nombre de commentaires en attentes de validation : </p>
             </div>
             <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                <a href="index.php?createPost" class="btn btn-outline-primary-custom">Créer un article</a>
+                <a href="index.php?dashboardPost" class="btn btn-outline-primary-custom">Créer un article</a>
                 <div class="bloc-data">
                     <p> <strong>Titre article</strong></p>
-                    <a href="index.php?modifyPost" class="modify">Modifier</a>
+                    <a href="index.php?dashboardPost" class="modify">Modifier</a>
                     <a href="index.php?deletePost" class="delete">Supprimer</a>
                 </div>
             </div>
