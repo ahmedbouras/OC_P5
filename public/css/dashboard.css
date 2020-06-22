@@ -1,0 +1,25 @@
+.nav-tabs {
+    margin-bottom: 50px;
+}
+.bloc-data {
+    margin-bottom: 40px;
+}
+.btn-outline-primary-custom {
+    margin-bottom: 40px;
+    color:  #474747;
+    border-color:  #474747;
+}
+.btn-outline-primary-custom:hover {
+    color: white;
+    background-color:  #474747;
+    border-color:  #474747;
+}
+.modify:hover {
+    color: #007bff;
+}
+.delete {
+    color: red;
+}
+.delete:hover {
+    color: red;
+}
