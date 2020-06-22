@@ -26,6 +26,14 @@ elseif(isset($_GET['dashboardPost']))
 {
     dashboardPost();
 }
+elseif(isset($_GET['error404']))
+{
+    error404();
+}
+elseif(isset($_GET['error403']))
+{
+    error403();
+}
 else
 {
     home();
