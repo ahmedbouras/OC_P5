@@ -12,21 +12,21 @@ ob_start()
             <div class="form-row">
                 <div class="col form-group">
                     <label>Titre de l'article</label>
-                    <input type="text" class="form-control" name="title">
+                    <input type="text" class="form-control" name="title" required>
                 </div>
                 <div class="col form-group">
                     <label>Auteur</label>
-                    <input type="text" class="form-control" name="author">
+                    <input type="text" class="form-control" name="author" required>
                 </div>
             </div>
             <div class="form-group">
                 <label>Chapô</label>
-                <textarea class="form-control" rows="2" name="chapo"></textarea>
+                <textarea class="form-control" rows="2" name="chapo" required></textarea>
             </div>
             <div class="form-group">
                 <label>Contenu de l'article</label>
                 <div class="form-group">
-                <textarea class="form-control" rows="30" name="content"></textarea>
+                <textarea class="form-control" rows="30" name="content" required></textarea>
             </div>
             <div class="row">
                 <button type="submit" class="btn btn-primary-custom btn-lg offset-1 col-10">Envoyer</button>
