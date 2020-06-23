@@ -1,12 +1,20 @@
 <?php
 spl_autoload_register(function ($className)
 {
-    require $className.'.php';
+    require "model/$className.php";
 });
 require 'controller/frontend.php';
 require 'controller/backend.php';
+$check = new VerifData($_GET, $_POST, $_SESSION);
+$myGET = $check->getGET();
+$myPOST = $check->getPOST();
+$mySESSION = $check->getSESSION();
 
-if(isset($_GET['blog']))
+if(isset($_GET['contact']))
+{
+    
+}
+elseif(isset($_GET['blog']))
 {
     blog();
 }

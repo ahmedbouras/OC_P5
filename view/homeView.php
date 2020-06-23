@@ -40,7 +40,7 @@ ob_start()
 
 <section id="contact-form" class="row">
     <div class="offset-md-3 col-md-6 offset-sm-1 col-sm-10 text-center">
-        <form action="" method="post">
+        <form action="index.php?contact#contact-form" method="post">
             <h3>Contactez-moi</h3>
             <input type="text" name="name" class="form-control" placeholder="Nom" required>
             <input type="email" name="email" class="form-control" placeholder="E-mail" required>
