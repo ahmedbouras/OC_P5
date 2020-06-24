@@ -1,4 +1,5 @@
 <?php
+session_start();
 spl_autoload_register(function ($className)
 {
     require "model/$className.php";
@@ -12,7 +13,32 @@ $mySESSION = $check->getSESSION();
 
 if(isset($_GET['contact']))
 {
-    
+    if($_GET['contact'] === 'success')
+    {
+        home('success', Message::messageSent());
+    }
+    else
+    {
+        if($check->verifFields($myPOST, ['name', 'email', 'message']) === 'complete')
+        {
+            if($check->verifEmail($myPOST['email']))
+            {
+                sendMessage($myPOST['name'], $myPOST['message']);
+            }
+            else
+            {
+                home('danger', Message::errorEmail());
+            }
+        }
+        elseif($check->verifFields($myPOST, ['name', 'email', 'message']) === 'empty')
+        {
+            home('warning', Message::emptyFields());
+        }
+        else
+        {
+            home();
+        }
+    }
 }
 elseif(isset($_GET['blog']))
 {

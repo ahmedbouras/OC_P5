@@ -42,6 +42,9 @@ ob_start()
     <div class="offset-md-3 col-md-6 offset-sm-1 col-sm-10 text-center">
         <form action="index.php?contact#contact-form" method="post">
             <h3>Contactez-moi</h3>
+            <?php if(isset($message)): ?>
+            <div class="alert alert-<?= $alert ?>" role="alert"> <?= $message ?> </div>
+            <?php endif ?>
             <input type="text" name="name" class="form-control" placeholder="Nom" required>
             <input type="email" name="email" class="form-control" placeholder="E-mail" required>
             <textarea name="message" class="form-control" cols="30" rows="5" placeholder="Message" required></textarea>

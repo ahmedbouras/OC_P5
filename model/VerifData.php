@@ -35,7 +35,7 @@ class VerifData
     {
         $this->_cleanSESSION = array_map('htmlspecialchars', $xssSESSION);
     }
-    public function verifyFields(array $superglobal, array $myKeys) : string
+    public function verifFields(array $superglobal, array $myKeys) : string
     {
         if(empty($superglobal))
         {
@@ -43,11 +43,11 @@ class VerifData
         }
         else
         {
-            foreach($superglobal as $key)
+            foreach($superglobal as $key => $value)
             {
                 if(!in_array($key, $myKeys))
                 {
-                    return 'nonexistant';
+                    return 'nonexistant2';
                 }
                 if(empty($superglobal[$key]))
                 {
@@ -56,5 +56,9 @@ class VerifData
             }
             return 'complete';
         }
+    }
+    public function verifEmail($email)
+    {
+        return preg_match("#^[a-z0-9.-_]+@[a-z0-9.-_]{2,}\.[a-z]{2,4}$#", $email);
     }
 }
