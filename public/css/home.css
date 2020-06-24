@@ -1,0 +1,78 @@
+/* HERO */
+#hero-image {
+    background-image: url("../images/main-image.jpg");
+    height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+#hero-text {
+    margin-left: 80px;
+}
+h1 {
+    font-size: 70px;
+}
+h2 {
+    font-size: 25px;
+}
+h2:first-of-type {
+    margin-top: 50px;
+}
+@media all and (max-width: 991px) {
+    #hero-image {
+        background-color: white;
+        height: 100vh;
+    }
+    #hero-text {
+        margin-left: 20px;
+    }
+    h1 {
+        font-size: 50px;
+    }
+}
+@media all and (max-width: 600px) {
+    #hero-image {
+        background-image: none;
+    }
+}
+
+/* SERVICES */
+#first-section {
+    background-color: #FDFDFD;
+    height: 600px;
+}
+#second-section {
+    height: 600px;
+}
+@media all and (max-width: 768px) {
+    #first-section {
+        height: 300px;
+    }
+    #second-section {
+        height: 300px;
+    }
+}
+h3 {
+    font-size: 22px;
+}
+p {
+    font-size: 16px;
+}
+
+/* CONTACT */
+#contact-form {
+    background-color: #FDFDFD;
+}
+#contact-form h3{
+    font-size: 30px;
+    margin-top: 100px;
+    margin-bottom: 80px;
+}
+.form-control {
+    margin-bottom: 20px;
+}
+.btn-form {
+    width: 180px;
+    margin-bottom: 100px;
+}

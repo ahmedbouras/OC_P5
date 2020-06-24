@@ -1,0 +1,50 @@
+/* GENERAL */
+body {
+    scroll-behavior: smooth;
+}
+body, html {
+    height: 100px;
+}
+* {
+    font-family: 'Lato', sans-serif;
+}
+h1, h3 {
+    font-family: 'Open Sans', sans-serif;
+}
+.btn-primary-custom {
+    background-color: #536dfe;
+    color: white;
+}
+.btn-primary-custom:hover {
+    background-color: #536dfeda;
+    color: white;
+}
+
+/* HEADER */
+.navbar-light .navbar-nav .nav-link {
+    color: black;
+    text-transform: uppercase;
+}
+.custom-toggler.navbar-toggler { 
+    border-color: black;
+}
+.custom-toggler .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0,0,0)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+/* FOOTER */
+footer {
+    height: 100px;
+    background-color: white;
+}
+footer li{
+    list-style: none;
+    margin-right: 20px;
+}
+footer a {
+    color: black;
+}
+footer a:hover {
+    color: #536dfe;
+    text-decoration: none;
+}

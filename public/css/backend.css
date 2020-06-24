@@ -1,0 +1,18 @@
+#bloc-dashboard {
+    margin-top: 80px;
+}
+
+/* HEADER */
+#nav-backend {
+    padding-top: 35px;
+    background-color: #474747;
+    height: 110px;
+}
+.btn-primary-custom {
+    background-color: #536dfe;
+    color: white;
+}
+.btn-primary-custom:hover {
+    background-color: #536dfeda;
+    color: white;
+}
