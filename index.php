@@ -46,7 +46,14 @@ elseif(isset($_GET['blog']))
 }
 elseif(isset($_GET['post']))
 {
-    post();
+    if($check->verifFields($myGET, ['id']) === 'complete' && $check->numbersOnly($myGET['id']))
+    {
+        post($myGET['id']);
+    }
+    else
+    {
+        error404();
+    }
 }
 elseif(isset($_GET['admin']))
 {

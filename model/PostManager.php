@@ -14,4 +14,25 @@ class PostManager extends DBManager
         $request->execute();
         return $request;
     }
+    public static function getPost($idPost)
+    {
+        $request = self::$db->prepare("SELECT id FROM posts");
+        $request->execute();
+        $existingId = [];
+        while($data = $request->fetch())
+        {
+            $existingId[] = $data['id'];
+        }
+        if(in_array($idPost, $existingId))
+        {
+            $request = self::$db->prepare(" SELECT *, DATE_FORMAT(latest_update, '%d/%m/%Y')
+                                            AS latest_update_fr FROM posts WHERE id = ?");
+            $request->execute([$idPost]);
+            return $request->fetch();
+        }
+        else
+        {
+            return false;
+        }
+    }
 }
