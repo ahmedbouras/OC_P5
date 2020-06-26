@@ -17,7 +17,7 @@ function post()
 {
     require 'view/postView.php';
 }
-function adminInterface()
+function adminInterface($alert = null, $message = null)
 {
     require 'view/adminInterfaceView.php';
 }

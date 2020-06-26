@@ -18,6 +18,9 @@
             <div id="bloc-connexion" class="col-12 d-flex align-items-center justify-content-center">
                 <form action="index.php?attemptConnexion" method="post" class="card">
                     <div class="form-group">
+                        <?php if(isset($message)): ?>
+                        <div class="alert alert-<?= $alert ?>" role="alert"> <?= $message ?> </div>
+                        <?php endif ?>
                         <label for="login">Login</label>
                         <input type="text" class="form-control" id="login" name="login" required>
                     </div>

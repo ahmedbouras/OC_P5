@@ -52,13 +52,53 @@ elseif(isset($_GET['admin']))
 {
     adminInterface();
 }
+elseif(isset($_GET['attemptConnexion']))
+{
+    if($_GET['attemptConnexion'] === 'error')
+    {
+        adminInterface('danger', Message::errorId());
+    }
+    else
+    {
+        if($check->verifFields($myPOST, ['login', 'pwd']) === 'complete')
+        {
+            attemptConnexion($myPOST['login'], $myPOST['pwd']);
+        }
+        elseif($check->verifFields($myPOST, ['login', 'pwd']) === 'empty')
+        {
+            adminInterface('warning', Message::emptyFields());
+        }
+        else
+        {
+            adminInterface();
+        }
+    }
+}
 elseif(isset($_GET['dashboard']))
 {
-    dashboard();
+    if($check->verifFields($mySESSION, ['id']) === 'complete')
+    {
+        dashboard();
+    }
+    else
+    {
+        error403();
+    }
 }
 elseif(isset($_GET['dashboardPost']))
 {
-    dashboardPost();
+    if($check->verifFields($mySESSION, ['id']) === 'complete')
+    {
+        dashboardPost();
+    }
+    else
+    {
+        error403();
+    }
+}
+elseif(isset($_GET['deconnexion']))
+{
+    deconnexion();
 }
 elseif(isset($_GET['error404']))
 {
