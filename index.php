@@ -52,8 +52,31 @@ elseif(isset($_GET['admin']))
 {
     adminInterface();
 }
+elseif(isset($_GET['attemptConnexion']))
+{
+    if($_GET['attemptConnexion'] === 'error')
+    {
+        adminInterface('danger', Message::errorId());
+    }
+    else
+    {
+        if($check->verifFields($myPOST, ['login', 'pwd']) === 'complete')
+        {
+            attemptConnexion($myPOST['login'], $myPOST['pwd']);
+        }
+        elseif($check->verifFields($myPOST, ['login', 'pwd']) === 'empty')
+        {
+            adminInterface('warning', Message::emptyFields());
+        }
+        else
+        {
+            adminInterface();
+        }
+    }
+}
 elseif(isset($_GET['dashboard']))
 {
+    
     dashboard();
 }
 elseif(isset($_GET['dashboardPost']))
