@@ -1,8 +1,13 @@
 <?php
 
-function home()
+function home($alert = null, $message = null)
 {
     require 'view/homeView.php';
+}
+function sendMessage($name, $message)
+{
+    mail('ahmed.bouras@outlook.fr', 'message-P5', $message, $name);
+    header('Location: index.php?contact=success');
 }
 function blog()
 {
