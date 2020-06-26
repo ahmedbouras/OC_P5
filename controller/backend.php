@@ -24,6 +24,8 @@ function attemptConnexion($login, $pwd)
 function dashboard()
 {
     DBManager::dbconnect();
+    $listPosts = PostManager::getPosts();
+    $listCommentsNoValid = CommentManager::getCommentsNoValid();
     require 'view/dashboardView.php';
 }
 function dashboardPost()

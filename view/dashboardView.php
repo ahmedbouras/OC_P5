@@ -16,22 +16,26 @@ ob_start()
         <div class="tab-content" id="nav-tabContent">
             <div class="tab-pane fade show active" id="nav-general" role="tabpanel" aria-labelledby="nav-general-tab">
                 <p>Nombre d'articles dans mon blog : <?= PostManager::getNbPosts() ?></p>
-                <p>Nombre de commentaires en attentes de validation : <?= CommentManager::getNbComments() ?></p>
+                <p>Nombre de commentaires en attentes de validation : <?= CommentManager::getNbCommentsNoValid() ?></p>
             </div>
             <div class="tab-pane fade" id="nav-articles" role="tabpanel" aria-labelledby="nav-articles-tab">
                 <a href="index.php?dashboardPost" class="btn btn-outline-primary-custom">Créer un article</a>
+                <?php while($data = $listPosts->fetch()): ?>
                 <div class="bloc-data">
-                    <p> <strong>Titre article</strong></p>
-                    <a href="index.php?dashboardPost" class="modify">Modifier</a>
-                    <a href="index.php?deletePost" class="delete">Supprimer</a>
+                    <p><strong><?= $data['title'] ?></strong></p>
+                    <a href="index.php?dashboardPost&id=<?= $data['id'] ?>" class="modify">Modifier</a>
+                    <a href="index.php?deletePost&id=<?= $data['id'] ?>" class="delete">Supprimer</a>
                 </div>
+                <?php endwhile ?>
             </div>
             <div class="tab-pane fade" id="nav-commentaires" role="tabpanel" aria-labelledby="nav-commentaires-tab">
+            <?php while($data = $listCommentsNoValid->fetch()): ?>
                 <div class="bloc-data">
-                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae et suscipit amet minima exercitationem ea ducimus cupiditate magnam. Earum impedit exercitationem, incidunt repellendus aspernatur quos praesentium aperiam veniam velit voluptatem.</p>
-                    <a href="index.php?validComment" class="modify">Valider</a>
-                    <a href="index.php?deleteComment" class="delete">Supprimer</a>
+                    <p><?= $data['comment'] ?></p>
+                    <a href="index.php?validComment&id=<?= $data['id'] ?>" class="modify">Valider</a>
+                    <a href="index.php?deleteComment&id=<?= $data['id'] ?>" class="delete">Supprimer</a>
                 </div>
+                <?php endwhile ?>
             </div>
         </div>
     </div>
