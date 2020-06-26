@@ -23,6 +23,7 @@ function attemptConnexion($login, $pwd)
 }
 function dashboard()
 {
+    DBManager::dbconnect();
     require 'view/dashboardView.php';
 }
 function dashboardPost()

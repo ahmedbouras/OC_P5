@@ -15,8 +15,8 @@ ob_start()
         </nav>
         <div class="tab-content" id="nav-tabContent">
             <div class="tab-pane fade show active" id="nav-general" role="tabpanel" aria-labelledby="nav-general-tab">
-                <p>Nombre d'articles dans mon blog : </p>
-                <p>Nombre de commentaires en attentes de validation : </p>
+                <p>Nombre d'articles dans mon blog : <?= PostManager::getNbPosts() ?></p>
+                <p>Nombre de commentaires en attentes de validation : <?= CommentManager::getNbComments() ?></p>
             </div>
             <div class="tab-pane fade" id="nav-articles" role="tabpanel" aria-labelledby="nav-articles-tab">
                 <a href="index.php?dashboardPost" class="btn btn-outline-primary-custom">Créer un article</a>
