@@ -30,6 +30,14 @@
                         <li class="nav-item">
                             <a class="nav-link" href="index.php#contact-form">Contact</a>
                         </li>
+                        <?php if(isset($_SESSION['id'])): ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.php?dashboard">Tableau de bord</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.php?deconnexion">Se deconnecter</a>
+                        </li>
+                        <?php endif ?>
                     </ul>
                 </div>
             </nav>

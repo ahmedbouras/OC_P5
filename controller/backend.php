@@ -8,7 +8,7 @@ function attemptConnexion($login, $pwd)
         if(password_verify($pwd, AdminManager::getPwd($login)))
         {
             require 'view/adminInterfaceView.php';
-            $_SESSION['id'] == AdminManager::getId();
+            $_SESSION['id'] = AdminManager::getId();
             header("Location: index.php?dashboard");
         }
         else
@@ -28,4 +28,9 @@ function dashboard()
 function dashboardPost()
 {
     require 'view/dashboardPostView.php';
+}
+function deconnexion()
+{
+    session_destroy();
+    header("Location: index.php");
 }

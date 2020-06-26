@@ -76,12 +76,29 @@ elseif(isset($_GET['attemptConnexion']))
 }
 elseif(isset($_GET['dashboard']))
 {
-    
-    dashboard();
+    if($check->verifFields($mySESSION, ['id']) === 'complete')
+    {
+        dashboard();
+    }
+    else
+    {
+        error403();
+    }
 }
 elseif(isset($_GET['dashboardPost']))
 {
-    dashboardPost();
+    if($check->verifFields($mySESSION, ['id']) === 'complete')
+    {
+        dashboardPost();
+    }
+    else
+    {
+        error403();
+    }
+}
+elseif(isset($_GET['deconnexion']))
+{
+    deconnexion();
 }
 elseif(isset($_GET['error404']))
 {
