@@ -43,13 +43,13 @@ class VerifData
         }
         else
         {
-            foreach($superglobal as $key => $value)
+            foreach($myKeys as $value)
             {
-                if(!in_array($key, $myKeys))
+                if(!array_key_exists($value, $superglobal))
                 {
-                    return 'nonexistant2';
+                    return 'nonexistant';
                 }
-                if(empty($superglobal[$key]))
+                if(!isset($superglobal[$value]) || empty($superglobal[$value]))
                 {
                     return 'empty';
                 }
