@@ -11,6 +11,8 @@ function sendMessage($name, $message)
 }
 function blog()
 {
+    DBManager::dbconnect();
+    $listPosts = PostManager::getPosts();
     require 'view/blogView.php';
 }
 function post()
