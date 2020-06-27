@@ -22,6 +22,9 @@ ob_start()
     <div class="col-md-8 offset-md-2 text-center">
         <form action="" method="post">
             <h3>Laisser un commentaire</h3>
+            <?php if(isset($message)): ?>
+            <div class="alert alert-<?= $alert ?>" role="alert"> <?= $message ?> </div>
+            <?php endif ?>
             <input type="text" name="pseudo" class="form-control" placeholder="Nom" required>
             <textarea name="comment" class="form-control" cols="30" rows="5" placeholder="Commentaire" required></textarea>
             <button type="submit" class="btn btn-primary-custom btn-form">Envoyer</button>
@@ -29,26 +32,14 @@ ob_start()
     </div>
 </section>
 <div id="bloc-comments" class="row">
+    <?php while($data = $commentsPost->fetch()): ?>
     <div class="offset-md-2 col-md-8">
         <div class="comment">
-            <h5>John Doe</h5>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quam molestias accusamus. <br>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quam molestias accusamus nobis quibusdam deleniti asperiores reiciendis.
-            </p>
-        </div>
-        <div class="comment">
-            <h5>John Doe</h5>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quam molestias accusamus nobis quibusdam deleniti asperiores reiciendis.</p>
-        </div>
-        <div class="comment">
-            <h5>John Doe</h5>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quam molestias accusamus nobis quibusdam deleniti asperiores reiciendis.</p>
-        </div>
-        <div class="comment">
-            <h5>John Doe</h5>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quam molestias accusamus nobis quibusdam deleniti asperiores reiciendis.</p>
+            <p><strong><?= $data['name'] ?></strong><p>
+            <p><?= $data['comment'] ?></p>
         </div>
     </div>
+    <?php endwhile ?>
 </div>
 
 <?php

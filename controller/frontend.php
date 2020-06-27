@@ -15,11 +15,12 @@ function blog()
     $listPosts = PostManager::getPosts();
     require 'view/blogView.php';
 }
-function post($idPost)
+function post($idPost, $alert = null, $message = null)
 {
     DBManager::dbconnect();
     if($post = PostManager::getPost($idPost))
     {
+        $commentsPost = CommentManager::getCommentsPost($idPost);
         require 'view/postView.php';
     }
     else
