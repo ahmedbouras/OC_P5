@@ -44,6 +44,16 @@ function dashboardPost()
 {
     require 'view/dashboardPostView.php';
 }
+function deletePost($idPost)
+{
+    DBManager::dbconnect();
+    if(PostManager::existingId($idPost))
+    {
+        PostManager::deletePost($idPost);
+        CommentManager::deleteCommentsPost($idPost);
+    }
+    header("Location: index.php?dashboard");
+}
 function deconnexion()
 {
     session_destroy();

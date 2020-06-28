@@ -32,4 +32,9 @@ class PostManager extends DBManager
         }
         return in_array($idPost, $existingId);
     }
+    public static function deletePost($idPost)
+    {
+        $request = self::$db->prepare("DELETE FROM posts WHERE id = ?");
+        $request->execute([$idPost]);
+    }
 }

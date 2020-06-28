@@ -46,7 +46,7 @@ elseif(isset($_GET['blog']))
 }
 elseif(isset($_GET['post']))
 {
-    if($check->verifFields($myGET, ['id']) === 'complete' && $check->numbersOnly($myGET['id']))
+    if($check->verifFields($myGET, ['id']) === 'complete' && $check->positiveInt($myGET['id']))
     {
         if(isset($_GET['success']))
         {
@@ -64,7 +64,7 @@ elseif(isset($_GET['post']))
 }
 elseif(isset($_GET['comment']))
 {
-    if($check->verifFields($myGET, ['id']) === 'complete' && $check->numbersOnly($myGET['id']))
+    if($check->verifFields($myGET, ['id']) === 'complete' && $check->positiveInt($myGET['id']))
     {
         if($check->verifFields($myPOST, ['name', 'comment']) === 'complete')
         {
@@ -112,7 +112,7 @@ elseif(isset($_GET['attemptConnexion']))
 }
 elseif(isset($_GET['dashboard']))
 {
-    if($check->verifFields($mySESSION, ['id']) === 'complete')
+    if($check->verifFields($mySESSION, ['id']) === 'complete' && $check->positiveInt($mySESSION['id']))
     {
         dashboard();
     }
@@ -123,7 +123,7 @@ elseif(isset($_GET['dashboard']))
 }
 elseif(isset($_GET['validComment']))
 {
-    if($check->verifFields($myGET, ['id']) === 'complete' && $check->numbersOnly($myGET['id']))
+    if($check->verifFields($myGET, ['id']) === 'complete' && $check->positiveInt($myGET['id']))
     {
         validComment($myGET['id']);
     }
@@ -134,7 +134,7 @@ elseif(isset($_GET['validComment']))
 }
 elseif(isset($_GET['deleteComment']))
 {
-    if($check->verifFields($myGET, ['id']) === 'complete' && $check->numbersOnly($myGET['id']))
+    if($check->verifFields($myGET, ['id']) === 'complete' && $check->positiveInt($myGET['id']))
     {
         deleteComment($myGET['id']);
     }
@@ -152,6 +152,17 @@ elseif(isset($_GET['dashboardPost']))
     else
     {
         error403();
+    }
+}
+elseif(isset($_GET['deletePost']))
+{
+    if($check->verifFields($myGET, ['id']) === 'complete' && $check->positiveInt($myGET['id']))
+    {
+        deletePost($myGET['id']);
+    }
+    else
+    {
+        dashboard();
     }
 }
 elseif(isset($_GET['deconnexion']))
