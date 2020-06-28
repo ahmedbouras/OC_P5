@@ -18,10 +18,24 @@ function blog()
 function post($idPost, $alert = null, $message = null)
 {
     DBManager::dbconnect();
-    if($post = PostManager::getPost($idPost))
+    if(PostManager::existingId($idPost))
     {
+        $post = PostManager::getPost($idPost);
         $commentsPost = CommentManager::getCommentsPost($idPost);
         require 'view/postView.php';
+    }
+    else
+    {
+        header("Location: index.php?error404");
+    }
+}
+function comment($idPost, $name, $comment)
+{
+    DBManager::dbconnect();
+    if(PostManager::existingId($idPost))
+    {
+        CommentManager::sentComment($idPost, $name, $comment);
+        header("Location: index.php?post&id=$idPost&success");
     }
     else
     {

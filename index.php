@@ -48,7 +48,36 @@ elseif(isset($_GET['post']))
 {
     if($check->verifFields($myGET, ['id']) === 'complete' && $check->numbersOnly($myGET['id']))
     {
-        post($myGET['id']);
+        if(isset($_GET['success']))
+        {
+            post($myGET['id'], 'success', Message::commentSent());
+        }
+        else
+        {
+            post($myGET['id']);
+        }
+    }
+    else
+    {
+        error404();
+    }
+}
+elseif(isset($_GET['comment']))
+{
+    if($check->verifFields($myGET, ['id']) === 'complete' && $check->numbersOnly($myGET['id']))
+    {
+        if($check->verifFields($myPOST, ['name', 'comment']) === 'complete')
+        {
+            comment($myGET['id'], $myPOST['name'], $myPOST['comment']);
+        }
+        elseif($check->verifFields($myPOST, ['name', 'comment']) === 'empty')
+        {
+            post($myGET['id'], 'warning', Message::emptyFields());
+        }
+        else
+        {
+            error404();
+        }
     }
     else
     {

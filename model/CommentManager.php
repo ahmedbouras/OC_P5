@@ -20,4 +20,10 @@ class CommentManager extends DBManager
         $request->execute([1, $idPost]);
         return $request;
     }
+    public static function sentComment($idPost, $name, $comment)
+    {
+        $request = self::$db->prepare(" INSERT INTO comments(post_id, name, comment, valid)
+                                        VALUES(?, ?, ?, ?)");
+        $request->execute([$idPost, $name, $comment, 0]);
+    }
 }

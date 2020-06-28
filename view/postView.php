@@ -20,12 +20,12 @@ ob_start()
 </div>
 <section id="comment-form" class="row">
     <div class="col-md-8 offset-md-2 text-center">
-        <form action="" method="post">
+        <form action="index.php?comment&id=<?= $post['id'] ?>#comment-form" method="post">
             <h3>Laisser un commentaire</h3>
             <?php if(isset($message)): ?>
             <div class="alert alert-<?= $alert ?>" role="alert"> <?= $message ?> </div>
             <?php endif ?>
-            <input type="text" name="pseudo" class="form-control" placeholder="Nom" required>
+            <input type="text" name="name" class="form-control" placeholder="Nom" required>
             <textarea name="comment" class="form-control" cols="30" rows="5" placeholder="Commentaire" required></textarea>
             <button type="submit" class="btn btn-primary-custom btn-form">Envoyer</button>
         </form>
