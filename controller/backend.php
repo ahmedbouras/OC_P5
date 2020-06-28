@@ -28,6 +28,18 @@ function dashboard()
     $listCommentsNoValid = CommentManager::getCommentsNoValid();
     require 'view/dashboardView.php';
 }
+function validComment($idComment)
+{
+    DBManager::dbConnect();
+    CommentManager::validateComment($idComment);
+    header("Location: index.php?dashboard");
+}
+function deleteComment($idComment)
+{
+    DBManager::dbConnect();
+    CommentManager::deleteComment($idComment);
+    header("Location: index.php?dashboard");
+}
 function dashboardPost()
 {
     require 'view/dashboardPostView.php';

@@ -22,7 +22,7 @@ ob_start()
                 <a href="index.php?dashboardPost" class="btn btn-outline-primary-custom">Créer un article</a>
                 <?php while($data = $listPosts->fetch()): ?>
                 <div class="bloc-data">
-                    <p><strong><?= $data['title'] ?></strong></p>
+                    <p><b><?= $data['title'] ?></b></p>
                     <a href="index.php?dashboardPost&id=<?= $data['id'] ?>" class="modify">Modifier</a>
                     <a href="index.php?deletePost&id=<?= $data['id'] ?>" class="delete">Supprimer</a>
                 </div>
@@ -31,7 +31,8 @@ ob_start()
             <div class="tab-pane fade" id="nav-commentaires" role="tabpanel" aria-labelledby="nav-commentaires-tab">
             <?php while($data = $listCommentsNoValid->fetch()): ?>
                 <div class="bloc-data">
-                    <p><?= $data['comment'] ?></p>
+                    <p><b><?= $data['name'] ?></b></p>
+                    <p> <?= $data['comment'] ?></p>
                     <a href="index.php?validComment&id=<?= $data['id'] ?>" class="modify">Valider</a>
                     <a href="index.php?deleteComment&id=<?= $data['id'] ?>" class="delete">Supprimer</a>
                 </div>
