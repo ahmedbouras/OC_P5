@@ -8,7 +8,10 @@ ob_start()
     <div class="offset-sm-1 col-sm-10">
         <a href="index.php?dashboard"><< Revenir sur le tableau de bord</a>
     </div class="row">
-        <form action="index.php?dashboardPost" method="post" class="offset-sm-1 col-sm-10 offset-md-2 col-md-8">
+        <form action="index.php?creationPost" method="post" class="offset-sm-1 col-sm-10 offset-md-2 col-md-8">
+            <?php if(isset($message)): ?>
+            <div class="alert alert-<?= $alert ?>" role="alert"> <?= $message ?> </div>
+            <?php endif ?>
             <div class="form-row">
                 <div class="col form-group">
                     <label>Titre de l'article</label>

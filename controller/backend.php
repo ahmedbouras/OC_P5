@@ -40,9 +40,15 @@ function deleteComment($idComment)
     CommentManager::deleteComment($idComment);
     header("Location: index.php?dashboard");
 }
-function dashboardPost()
+function dashboardPost($alert = null, $message = null)
 {
     require 'view/dashboardPostView.php';
+}
+function createPost($title, $author, $chapo, $content)
+{
+    DBManager::dbconnect();
+    PostManager::createPost($title, $author, $chapo, $content);
+    header("Location: index.php?dashboardPost&created");
 }
 function deletePost($idPost)
 {

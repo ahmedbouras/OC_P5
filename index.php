@@ -123,31 +123,74 @@ elseif(isset($_GET['dashboard']))
 }
 elseif(isset($_GET['validComment']))
 {
-    if($check->verifFields($myGET, ['id']) === 'complete' && $check->positiveInt($myGET['id']))
+    if($check->verifFields($mySESSION, ['id']) === 'complete' && $check->positiveInt($mySESSION['id']))
     {
-        validComment($myGET['id']);
+        if($check->verifFields($myGET, ['id']) === 'complete' && $check->positiveInt($myGET['id']))
+        {
+            validComment($myGET['id']);
+        }
+        else
+        {
+            dashboard();
+        }
     }
     else
     {
-        dashboard();
+        error403();
     }
 }
 elseif(isset($_GET['deleteComment']))
 {
-    if($check->verifFields($myGET, ['id']) === 'complete' && $check->positiveInt($myGET['id']))
+    if($check->verifFields($mySESSION, ['id']) === 'complete' && $check->positiveInt($mySESSION['id']))
     {
-        deleteComment($myGET['id']);
+        if($check->verifFields($myGET, ['id']) === 'complete' && $check->positiveInt($myGET['id']))
+        {
+            deleteComment($myGET['id']);
+        }
+        else
+        {
+            dashboard();
+        }
     }
     else
     {
-        dashboard();
+        error403();
     }
 }
 elseif(isset($_GET['dashboardPost']))
 {
-    if($check->verifFields($mySESSION, ['id']) === 'complete')
+    if($check->verifFields($mySESSION, ['id']) === 'complete' && $check->positiveInt($mySESSION['id']))
     {
-        dashboardPost();
+        if(isset($_GET['created']))
+        {
+            dashboardPost('success', Message::createdPost());
+        }
+        else
+        {
+            dashboardPost();
+        }
+    }
+    else
+    {
+        error403();
+    }
+}
+elseif(isset($_GET['creationPost']))
+{
+    if($check->verifFields($mySESSION, ['id']) === 'complete' && $check->positiveInt($mySESSION['id']))
+    {
+        if($check->verifFields($myPOST, ['title', 'author', 'chapo', 'content']) === 'complete')
+        {
+            createPost($myPOST['title'], $myPOST['author'], $myPOST['chapo'], $myPOST['content']);
+        }
+        elseif($check->verifFields($myPOST, ['title', 'author', 'chapo', 'content']) === 'empty')
+        {
+            dashboardPost('warning', Message::emptyFields());
+        }
+        else
+        {
+            dashboard();
+        }
     }
     else
     {
@@ -156,18 +199,32 @@ elseif(isset($_GET['dashboardPost']))
 }
 elseif(isset($_GET['deletePost']))
 {
-    if($check->verifFields($myGET, ['id']) === 'complete' && $check->positiveInt($myGET['id']))
+    if($check->verifFields($mySESSION, ['id']) === 'complete' && $check->positiveInt($mySESSION['id']))
     {
-        deletePost($myGET['id']);
+        if($check->verifFields($myGET, ['id']) === 'complete' && $check->positiveInt($myGET['id']))
+        {
+            deletePost($myGET['id']);
+        }
+        else
+        {
+            dashboard();
+        }
     }
     else
     {
-        dashboard();
+        error403();
     }
 }
 elseif(isset($_GET['deconnexion']))
 {
-    deconnexion();
+    if($check->verifFields($mySESSION, ['id']) === 'complete' && $check->positiveInt($mySESSION['id']))
+    {
+        deconnexion();
+    }
+    else
+    {
+        error403();
+    }
 }
 elseif(isset($_GET['error404']))
 {
