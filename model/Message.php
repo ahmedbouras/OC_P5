@@ -7,6 +7,7 @@ class Message
     private static $_errorEmail = "Veuillez saisir un email valide.";
     private static $_commentSent = "Votre commentaire a bien été envoyé. Il sera soumis à validation.";
     private static $_createdPost = "Votre article a bien été créé !";
+    private static $_modifiedPost = "Votre article a bien été modifié !";
 
     public static function errorId()
     {
@@ -31,5 +32,9 @@ class Message
     public static function createdPost()
     {
         return self::$_createdPost;
+    }
+    public static function modifiedPost()
+    {
+        return self::$_modifiedPost;
     }
 }

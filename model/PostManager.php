@@ -38,6 +38,13 @@ class PostManager extends DBManager
                                         VALUES(?, ?, ?, ?)");
         $request->execute([$title, $author, $chapo, $content]);
     }
+    public static function modifyPost($idPost, $title, $author, $chapo, $content)
+    {
+        $request = self::$db->prepare(" UPDATE posts
+                                        SET title = ?, author = ?, chapo = ?, content = ?, latest_update = NOW()
+                                        WHERE id = ? ");
+        $request->execute([$title, $author, $chapo, $content, $idPost]);
+    }
     public static function deletePost($idPost)
     {
         $request = self::$db->prepare("DELETE FROM posts WHERE id = ?");

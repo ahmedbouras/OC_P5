@@ -161,13 +161,24 @@ elseif(isset($_GET['dashboardPost']))
 {
     if($check->verifFields($mySESSION, ['id']) === 'complete' && $check->positiveInt($mySESSION['id']))
     {
-        if(isset($_GET['created']))
+        if($check->verifFields($myGET, ['id']) === 'complete' && $check->positiveInt($myGET['id']))
         {
-            dashboardPost('success', Message::createdPost());
+            dashboardPost(null, null, true, $myGET['id']);
         }
         else
         {
-            dashboardPost();
+            if(isset($_GET['created']))
+            {
+                dashboardPost('success', Message::createdPost());
+            }
+            elseif(isset($_GET['modified']))
+            {
+                dashboardPost('success', Message::modifiedPost());
+            }
+            else
+            {
+                dashboardPost();
+            }
         }
     }
     else
@@ -186,6 +197,35 @@ elseif(isset($_GET['creationPost']))
         elseif($check->verifFields($myPOST, ['title', 'author', 'chapo', 'content']) === 'empty')
         {
             dashboardPost('warning', Message::emptyFields());
+        }
+        else
+        {
+            dashboard();
+        }
+    }
+    else
+    {
+        error403();
+    }
+}
+elseif(isset($_GET['modificationPost']))
+{
+    if($check->verifFields($mySESSION, ['id']) === 'complete' && $check->positiveInt($mySESSION['id']))
+    {
+        if($check->verifFields($myGET, ['id']) === 'complete' && $check->positiveInt($myGET['id']))
+        {
+            if($check->verifFields($myPOST, ['title', 'author', 'chapo', 'content']) === 'complete')
+            {
+                modifyPost($myGET['id'], $myPOST['title'], $myPOST['author'], $myPOST['chapo'], $myPOST['content']);
+            }
+            elseif ($check->verifFields($myPOST, ['title', 'author', 'chapo', 'content']) === 'empty')
+            {
+                dashboardPost('warning', Message::emptyFields(), true, $myGET['id']);
+            }
+            else
+            {
+                dashboard();
+            }
         }
         else
         {
