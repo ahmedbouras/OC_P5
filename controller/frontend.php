@@ -11,11 +11,21 @@ function sendMessage($name, $message)
 }
 function blog()
 {
+    DBManager::dbconnect();
+    $listPosts = PostManager::getPosts();
     require 'view/blogView.php';
 }
-function post()
+function post($idPost)
 {
-    require 'view/postView.php';
+    DBManager::dbconnect();
+    if($post = PostManager::getPost($idPost))
+    {
+        require 'view/postView.php';
+    }
+    else
+    {
+        header("Location: index.php?error404");
+    }
 }
 function adminInterface($alert = null, $message = null)
 {

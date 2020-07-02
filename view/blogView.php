@@ -11,78 +11,17 @@ ob_start()
 </div>
 <div class="row">
     <div id="bloc-posts" class="col-md-10 offset-md-1">
+        <?php while($data = $listPosts->fetch()): ?>
         <div class="card text-center">
             <div class="card-body">
-                <h5 class="card-title">Titre de l'article</h5>
-                <p class="card-text">Ceci est le chapô de mon article.
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                </p>
-                <a href="index.php?post" class="btn btn-primary-custom">Voir l'article</a>
+                <h5 class="card-title"><?= $data['title'] ?></h5>
+                <p class="card-text"><?= $data['chapo'] ?></p>
+                <a href="index.php?post&id=<?= $data['id'] ?>" class="btn btn-primary-custom">Voir l'article</a>
             </div>
             <div class="card-footer text-muted">
-                Mis à jour le 10/05/2019
-            </div>
+                Mis à jour le <?= $data['latest_update_fr'] ?></div>
         </div>
-        <div class="card text-center">
-            <div class="card-body">
-                <h5 class="card-title">Titre de l'article</h5>
-                <p class="card-text">Ceci est le chapô de mon article.
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                </p>
-                <a href="index.php?post" class="btn btn-primary-custom">Voir l'article</a>
-            </div>
-            <div class="card-footer text-muted">
-                Mis à jour le 10/05/2019
-            </div>
-        </div>
-        <div class="card text-center">
-            <div class="card-body">
-                <h5 class="card-title">Titre de l'article</h5>
-                <p class="card-text">Ceci est le chapô de mon article.
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                </p>
-                <a href="index.php?post" class="btn btn-primary-custom">Voir l'article</a>
-            </div>
-            <div class="card-footer text-muted">
-                Mis à jour le 10/05/2019
-            </div>
-        </div>
-        <div class="card text-center">
-            <div class="card-body">
-                <h5 class="card-title">Titre de l'article</h5>
-                <p class="card-text">Ceci est le chapô de mon article.
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                </p>
-                <a href="index.php?post" class="btn btn-primary-custom">Voir l'article</a>
-            </div>
-            <div class="card-footer text-muted">
-                Mis à jour le 10/05/2019
-            </div>
-        </div>
-        <div class="card text-center">
-            <div class="card-body">
-                <h5 class="card-title">Titre de l'article</h5>
-                <p class="card-text">Ceci est le chapô de mon article.
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                </p>
-                <a href="index.php?post" class="btn btn-primary-custom">Voir l'article</a>
-            </div>
-            <div class="card-footer text-muted">
-                Mis à jour le 10/05/2019
-            </div>
-        </div>
-        <div class="card text-center">
-            <div class="card-body">
-                <h5 class="card-title">Titre de l'article</h5>
-                <p class="card-text">Ceci est le chapô de mon article.
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                </p>
-                <a href="index.php?post" class="btn btn-primary-custom">Voir l'article</a>
-            </div>
-            <div class="card-footer text-muted">
-                Mis à jour le 10/05/2019
-            </div>
-        </div>
+        <?php endwhile ?>
     </div>
 </div>
 
