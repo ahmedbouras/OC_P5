@@ -21,6 +21,7 @@ h1 {
 #comment-form {
     margin-top: 50px;
     margin-bottom: 50px;
+    padding-top: 100px;
 }
 .form-control {
     margin-bottom: 20px;

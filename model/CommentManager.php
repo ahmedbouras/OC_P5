@@ -13,4 +13,17 @@ class CommentManager extends DBManager
         $request->execute([0]);
         return $request;
     }
+    public static function getCommentsPost($idPost)
+    {
+        $request = self::$db->prepare(" SELECT * FROM comments WHERE valid = ? AND post_id = ?
+                                        ORDER BY comment_date DESC");
+        $request->execute([1, $idPost]);
+        return $request;
+    }
+    public static function sentComment($idPost, $name, $comment)
+    {
+        $request = self::$db->prepare(" INSERT INTO comments(post_id, name, comment, valid)
+                                        VALUES(?, ?, ?, ?)");
+        $request->execute([$idPost, $name, $comment, 0]);
+    }
 }

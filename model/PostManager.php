@@ -16,6 +16,13 @@ class PostManager extends DBManager
     }
     public static function getPost($idPost)
     {
+        $request = self::$db->prepare(" SELECT *, DATE_FORMAT(latest_update, '%d/%m/%Y')
+                                        AS latest_update_fr FROM posts WHERE id = ?");
+        $request->execute([$idPost]);
+        return $request->fetch();
+    }
+    public static function existingId($idPost)
+    {
         $request = self::$db->prepare("SELECT id FROM posts");
         $request->execute();
         $existingId = [];
@@ -23,16 +30,6 @@ class PostManager extends DBManager
         {
             $existingId[] = $data['id'];
         }
-        if(in_array($idPost, $existingId))
-        {
-            $request = self::$db->prepare(" SELECT *, DATE_FORMAT(latest_update, '%d/%m/%Y')
-                                            AS latest_update_fr FROM posts WHERE id = ?");
-            $request->execute([$idPost]);
-            return $request->fetch();
-        }
-        else
-        {
-            return false;
-        }
+        return in_array($idPost, $existingId);
     }
 }
