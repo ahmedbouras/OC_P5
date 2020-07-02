@@ -40,9 +40,50 @@ function deleteComment($idComment)
     CommentManager::deleteComment($idComment);
     header("Location: index.php?dashboard");
 }
-function dashboardPost()
+function dashboardPost($alert = null, $message = null, $modification = false, $idPost = null)
 {
+    if($modification)
+    {
+        DBManager::dbconnect();
+        if(PostManager::existingId($idPost))
+        {
+            $post = PostManager::getPost($idPost);
+        }
+        else
+        {
+            header("Location: index.php?dashboardPost");
+        }
+    }
     require 'view/dashboardPostView.php';
+}
+function createPost($title, $author, $chapo, $content)
+{
+    DBManager::dbconnect();
+    PostManager::createPost($title, $author, $chapo, $content);
+    header("Location: index.php?dashboardPost&created");
+}
+function modifyPost($idPost, $title, $author, $chapo, $content)
+{
+    DBManager::dbconnect();
+    if(PostManager::existingId($idPost))
+    {
+        PostManager::modifyPost($idPost, $title, $author, $chapo, $content);
+        header("Location: index.php?dashboardPost&modified");
+    }
+    else
+    {
+        header("Location: index.php?dashboardPost");
+    }
+}
+function deletePost($idPost)
+{
+    DBManager::dbconnect();
+    if(PostManager::existingId($idPost))
+    {
+        PostManager::deletePost($idPost);
+        CommentManager::deleteCommentsPost($idPost);
+    }
+    header("Location: index.php?dashboard");
 }
 function deconnexion()
 {

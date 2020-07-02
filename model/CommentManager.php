@@ -36,4 +36,9 @@ class CommentManager extends DBManager
         $request = self::$db->prepare("DELETE FROM comments WHERE id = ?");
         $request->execute([$idComment]);
     }
+    public static function deleteCommentsPost($idPost)
+    {
+        $request = self::$db->prepare("DELETE FROM comments WHERE post_id = ?");
+        $request->execute([$idPost]);
+    }
 }
