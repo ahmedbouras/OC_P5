@@ -26,4 +26,14 @@ class CommentManager extends DBManager
                                         VALUES(?, ?, ?, ?)");
         $request->execute([$idPost, $name, $comment, 0]);
     }
+    public static function validateComment($idComment)
+    {
+        $request = self::$db->prepare("UPDATE comments SET valid = ? WHERE id = ?");
+        $request->execute([1, $idComment]);
+    }
+    public static function deleteComment($idComment)
+    {
+        $request = self::$db->prepare("DELETE FROM comments WHERE id = ?");
+        $request->execute([$idComment]);
+    }
 }

@@ -36,7 +36,7 @@ ob_start()
     <div class="offset-md-2 col-md-8">
         <div class="comment">
             <p><strong><?= $data['name'] ?></strong><p>
-            <p><?= $data['comment'] ?></p>
+            <p><?= nl2br($data['comment']) ?></p>
         </div>
     </div>
     <?php endwhile ?>

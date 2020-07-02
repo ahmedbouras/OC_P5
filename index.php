@@ -121,6 +121,28 @@ elseif(isset($_GET['dashboard']))
         error403();
     }
 }
+elseif(isset($_GET['validComment']))
+{
+    if($check->verifFields($myGET, ['id']) === 'complete' && $check->numbersOnly($myGET['id']))
+    {
+        validComment($myGET['id']);
+    }
+    else
+    {
+        dashboard();
+    }
+}
+elseif(isset($_GET['deleteComment']))
+{
+    if($check->verifFields($myGET, ['id']) === 'complete' && $check->numbersOnly($myGET['id']))
+    {
+        deleteComment($myGET['id']);
+    }
+    else
+    {
+        dashboard();
+    }
+}
 elseif(isset($_GET['dashboardPost']))
 {
     if($check->verifFields($mySESSION, ['id']) === 'complete')
