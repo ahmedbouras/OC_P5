@@ -7,7 +7,7 @@ function home($alert = null, $message = null)
 function sendMessage($name, $message)
 {
     mail('ahmed.bouras@outlook.fr', 'message-P5', $message, $name);
-    header('Location: index.php?contact=success');
+    header('Location: index.php?page=home&result=success');
 }
 function blog()
 {
@@ -26,7 +26,7 @@ function post($idPost, $alert = null, $message = null)
     }
     else
     {
-        header("Location: index.php?error404");
+        header("Location: index.php?page=error404");
     }
 }
 function comment($idPost, $name, $comment)
@@ -35,16 +35,16 @@ function comment($idPost, $name, $comment)
     if(PostManager::existingId($idPost))
     {
         CommentManager::sentComment($idPost, $name, $comment);
-        header("Location: index.php?post&id=$idPost&success");
+        header("Location: index.php?page=post&id=$idPost&action=comment&result=success");
     }
     else
     {
         header("Location: index.php?error404");
     }
 }
-function adminInterface($alert = null, $message = null)
+function loginPage($alert = null, $message = null)
 {
-    require 'view/adminInterfaceView.php';
+    require 'view/loginPageView.php';
 }
 function error404()
 {

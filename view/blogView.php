@@ -16,7 +16,7 @@ ob_start()
             <div class="card-body">
                 <h5 class="card-title"><?= $data['title'] ?></h5>
                 <p class="card-text"><?= $data['chapo'] ?></p>
-                <a href="index.php?post&id=<?= $data['id'] ?>" class="btn btn-primary-custom">Voir l'article</a>
+                <a href="index.php?page=post&id=<?= $data['id'] ?>" class="btn btn-primary-custom">Voir l'article</a>
             </div>
             <div class="card-footer text-muted">
                 Mis à jour le <?= $data['latest_update_fr'] ?></div>

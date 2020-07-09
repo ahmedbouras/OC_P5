@@ -20,7 +20,7 @@ ob_start()
 </div>
 <section id="comment-form" class="row">
     <div class="col-md-8 offset-md-2 text-center">
-        <form action="index.php?comment&id=<?= $post['id'] ?>#comment-form" method="post">
+        <form action="index.php?page=post&id=<?= $post['id'] ?>&action=comment#comment-form" method="post">
             <h3>Laisser un commentaire</h3>
             <?php if(isset($message)): ?>
             <div class="alert alert-<?= $alert ?>" role="alert"> <?= $message ?> </div>

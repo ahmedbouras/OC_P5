@@ -6,12 +6,12 @@ ob_start()
 
 <div id="bloc-dashboard" class="row">
     <div class="offset-sm-1 col-sm-10">
-        <a href="index.php?dashboard"><< Revenir sur le tableau de bord</a>
+        <a href="index.php?page=dashboard"><< Revenir sur le tableau de bord</a>
     </div class="row">
         <form   <?php if($modification): ?>
-        action="index.php?modificationPost&id=<?= $post['id'] ?>"
+        action="index.php?page=dashboardPost&action=modification&id=<?= $post['id'] ?>"
                 <?php else: ?>
-        action="index.php?creationPost"
+        action="index.php?page=dashboardPost&action=creation"
                 <?php endif ?>
         method="post" class="offset-sm-1 col-sm-10 offset-md-2 col-md-8">
             <?php if(isset($message)): ?>

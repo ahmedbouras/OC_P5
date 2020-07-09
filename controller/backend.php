@@ -7,18 +7,17 @@ function attemptConnexion($login, $pwd)
     {
         if(password_verify($pwd, AdminManager::getPwd($login)))
         {
-            require 'view/adminInterfaceView.php';
             $_SESSION['id'] = AdminManager::getId();
-            header("Location: index.php?dashboard");
+            header("Location: index.php?page=dashboard");
         }
         else
         {
-            header("Location: index.php?attemptConnexion=error");
+            header("Location: index.php?page=loginPage&result=error");
         }
     }
     else
     {
-        header("Location: index.php?attemptConnexion=error");
+        header("Location: index.php?page=loginPage&result=error");
     }
 }
 function dashboard()
@@ -32,13 +31,13 @@ function validComment($idComment)
 {
     DBManager::dbConnect();
     CommentManager::validateComment($idComment);
-    header("Location: index.php?dashboard");
+    header("Location: index.php?page=dashboard");
 }
 function deleteComment($idComment)
 {
     DBManager::dbConnect();
     CommentManager::deleteComment($idComment);
-    header("Location: index.php?dashboard");
+    header("Location: index.php?page=dashboard");
 }
 function dashboardPost($alert = null, $message = null, $modification = false, $idPost = null)
 {
@@ -51,7 +50,7 @@ function dashboardPost($alert = null, $message = null, $modification = false, $i
         }
         else
         {
-            header("Location: index.php?dashboardPost");
+            header("Location: index.php?page=dashboardPost");
         }
     }
     require 'view/dashboardPostView.php';
@@ -60,7 +59,7 @@ function createPost($title, $author, $chapo, $content)
 {
     DBManager::dbconnect();
     PostManager::createPost($title, $author, $chapo, $content);
-    header("Location: index.php?dashboardPost&created");
+    header("Location: index.php?page=dashboardPost&result=created");
 }
 function modifyPost($idPost, $title, $author, $chapo, $content)
 {
@@ -68,11 +67,11 @@ function modifyPost($idPost, $title, $author, $chapo, $content)
     if(PostManager::existingId($idPost))
     {
         PostManager::modifyPost($idPost, $title, $author, $chapo, $content);
-        header("Location: index.php?dashboardPost&modified");
+        header("Location: index.php?page=dashboardPost&result=modified");
     }
     else
     {
-        header("Location: index.php?dashboardPost");
+        header("Location: index.php?page=dashboardPost");
     }
 }
 function deletePost($idPost)
@@ -83,7 +82,7 @@ function deletePost($idPost)
         PostManager::deletePost($idPost);
         CommentManager::deleteCommentsPost($idPost);
     }
-    header("Location: index.php?dashboard");
+    header("Location: index.php?page=dashboard");
 }
 function deconnexion()
 {

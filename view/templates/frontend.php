@@ -25,17 +25,17 @@
                             <a class="nav-link" href="index.php">Accueil</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="index.php?blog">Blog</a>
+                            <a class="nav-link" href="index.php?page=blog">Blog</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="index.php#contact-form">Contact</a>
                         </li>
                         <?php if(isset($_SESSION['id'])): ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="index.php?dashboard">Tableau de bord</a>
+                            <a class="nav-link" href="index.php?page=dashboard">Tableau de bord</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="index.php?deconnexion">Se deconnecter</a>
+                            <a class="nav-link" href="index.php?page=deconnexion">Se deconnecter</a>
                         </li>
                         <?php endif ?>
                     </ul>
@@ -49,10 +49,10 @@
             <div class="col-md-6 align-self-center">
                 <ul class="d-flex justify-content-center">
                     <li>
-                        <a href="">Mon CV</a>
+                        <a href="#">Mon CV</a>
                     </li>
                     <li>
-                        <a href="index.php?admin"> Interface Admin</a>
+                        <a href="index.php?page=loginPage"> Interface Admin</a>
                     </li>
                 </ul>
             </div>
