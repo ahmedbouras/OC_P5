@@ -6,275 +6,212 @@ spl_autoload_register(function ($className)
 });
 require 'controller/frontend.php';
 require 'controller/backend.php';
-$check = new VerifData($_GET, $_POST, $_SESSION);
-$myGET = $check->getGET();
-$myPOST = $check->getPOST();
-$mySESSION = $check->getSESSION();
+$get = array_map('htmlspecialchars', $_GET);
+$post = array_map('htmlspecialchars', $_POST);
+$session = array_map('htmlspecialchars', $_SESSION);
 
-if(isset($_GET['contact']))
-{
-    if($_GET['contact'] === 'success')
+try {
+    if(isset($_GET['page']))
     {
-        home('success', Message::messageSent());
-    }
-    else
-    {
-        if($check->verifFields($myPOST, ['name', 'email', 'message']) === 'complete')
-        {
-            if($check->verifEmail($myPOST['email']))
-            {
-                sendMessage($myPOST['name'], $myPOST['message']);
-            }
-            else
-            {
-                home('danger', Message::errorEmail());
-            }
-        }
-        elseif($check->verifFields($myPOST, ['name', 'email', 'message']) === 'empty')
-        {
-            home('warning', Message::emptyFields());
-        }
-        else
-        {
-            home();
-        }
-    }
-}
-elseif(isset($_GET['blog']))
-{
-    blog();
-}
-elseif(isset($_GET['post']))
-{
-    if($check->verifFields($myGET, ['id']) === 'complete' && $check->positiveInt($myGET['id']))
-    {
-        if(isset($_GET['success']))
-        {
-            post($myGET['id'], 'success', Message::commentSent());
-        }
-        else
-        {
-            post($myGET['id']);
-        }
-    }
-    else
-    {
-        error404();
-    }
-}
-elseif(isset($_GET['comment']))
-{
-    if($check->verifFields($myGET, ['id']) === 'complete' && $check->positiveInt($myGET['id']))
-    {
-        if($check->verifFields($myPOST, ['name', 'comment']) === 'complete')
-        {
-            comment($myGET['id'], $myPOST['name'], $myPOST['comment']);
-        }
-        elseif($check->verifFields($myPOST, ['name', 'comment']) === 'empty')
-        {
-            post($myGET['id'], 'warning', Message::emptyFields());
-        }
-        else
-        {
-            error404();
-        }
-    }
-    else
-    {
-        error404();
-    }
-}
-elseif(isset($_GET['admin']))
-{
-    adminInterface();
-}
-elseif(isset($_GET['attemptConnexion']))
-{
-    if($_GET['attemptConnexion'] === 'error')
-    {
-        adminInterface('danger', Message::errorId());
-    }
-    else
-    {
-        if($check->verifFields($myPOST, ['login', 'pwd']) === 'complete')
-        {
-            attemptConnexion($myPOST['login'], $myPOST['pwd']);
-        }
-        elseif($check->verifFields($myPOST, ['login', 'pwd']) === 'empty')
-        {
-            adminInterface('warning', Message::emptyFields());
-        }
-        else
-        {
-            adminInterface();
-        }
-    }
-}
-elseif(isset($_GET['dashboard']))
-{
-    if($check->verifFields($mySESSION, ['id']) === 'complete' && $check->positiveInt($mySESSION['id']))
-    {
-        dashboard();
-    }
-    else
-    {
-        error403();
-    }
-}
-elseif(isset($_GET['validComment']))
-{
-    if($check->verifFields($mySESSION, ['id']) === 'complete' && $check->positiveInt($mySESSION['id']))
-    {
-        if($check->verifFields($myGET, ['id']) === 'complete' && $check->positiveInt($myGET['id']))
-        {
-            validComment($myGET['id']);
-        }
-        else
-        {
-            dashboard();
-        }
-    }
-    else
-    {
-        error403();
-    }
-}
-elseif(isset($_GET['deleteComment']))
-{
-    if($check->verifFields($mySESSION, ['id']) === 'complete' && $check->positiveInt($mySESSION['id']))
-    {
-        if($check->verifFields($myGET, ['id']) === 'complete' && $check->positiveInt($myGET['id']))
-        {
-            deleteComment($myGET['id']);
-        }
-        else
-        {
-            dashboard();
-        }
-    }
-    else
-    {
-        error403();
-    }
-}
-elseif(isset($_GET['dashboardPost']))
-{
-    if($check->verifFields($mySESSION, ['id']) === 'complete' && $check->positiveInt($mySESSION['id']))
-    {
-        if($check->verifFields($myGET, ['id']) === 'complete' && $check->positiveInt($myGET['id']))
-        {
-            dashboardPost(null, null, true, $myGET['id']);
-        }
-        else
-        {
-            if(isset($_GET['created']))
-            {
-                dashboardPost('success', Message::createdPost());
-            }
-            elseif(isset($_GET['modified']))
-            {
-                dashboardPost('success', Message::modifiedPost());
-            }
-            else
-            {
-                dashboardPost();
-            }
-        }
-    }
-    else
-    {
-        error403();
-    }
-}
-elseif(isset($_GET['creationPost']))
-{
-    if($check->verifFields($mySESSION, ['id']) === 'complete' && $check->positiveInt($mySESSION['id']))
-    {
-        if($check->verifFields($myPOST, ['title', 'author', 'chapo', 'content']) === 'complete')
-        {
-            createPost($myPOST['title'], $myPOST['author'], $myPOST['chapo'], $myPOST['content']);
-        }
-        elseif($check->verifFields($myPOST, ['title', 'author', 'chapo', 'content']) === 'empty')
-        {
-            dashboardPost('warning', Message::emptyFields());
-        }
-        else
-        {
-            dashboard();
-        }
-    }
-    else
-    {
-        error403();
-    }
-}
-elseif(isset($_GET['modificationPost']))
-{
-    if($check->verifFields($mySESSION, ['id']) === 'complete' && $check->positiveInt($mySESSION['id']))
-    {
-        if($check->verifFields($myGET, ['id']) === 'complete' && $check->positiveInt($myGET['id']))
-        {
-            if($check->verifFields($myPOST, ['title', 'author', 'chapo', 'content']) === 'complete')
-            {
-                modifyPost($myGET['id'], $myPOST['title'], $myPOST['author'], $myPOST['chapo'], $myPOST['content']);
-            }
-            elseif ($check->verifFields($myPOST, ['title', 'author', 'chapo', 'content']) === 'empty')
-            {
-                dashboardPost('warning', Message::emptyFields(), true, $myGET['id']);
-            }
-            else
-            {
-                dashboard();
-            }
-        }
-        else
-        {
-            dashboard();
+        switch ($_GET['page']) {
+            case 'home':
+                if(VerifData::keysAndValues($get, ['result']) && $_GET['result'] === 'success')
+                {
+                    home('success', Message::messageSent());
+                }
+                else
+                {
+                    if(VerifData::keysAndValues($post, ['name', 'email', 'message']))
+                    {
+                        if(VerifData::isValidEmail($post['email']))
+                        {
+                            sendMessage($post);
+                        }
+                        else
+                        {
+                            home('danger', Message::errorEmail());
+                        }
+                    }
+                    else
+                    {
+                        home('warning', Message::emptyFields());
+                    }
+                }
+                break;
+            case 'blog':
+                blog();
+                break;
+            case 'article':
+                if(VerifData::keysAndValues($get, ['id']) && VerifData::isPositiveInt($get['id']))
+                {
+                    if(VerifData::keysAndValues($get, ['action']))
+                    {
+                        switch ($_GET['action']) {
+                            case 'comment':
+                                if(VerifData::keysAndValues($post, ['name', 'comment']))
+                                {
+                                    comment($get['id'], $post);
+                                }
+                                else
+                                {
+                                    article($get['id'], 'warning', Message::emptyFields());            
+                                }
+                                break;
+                            case 'commentSent':
+                                article($get['id'], 'success', Message::commentSent());
+                                break;
+                            default:
+                                
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        article($get['id']);
+                    }
+                }
+                else
+                {
+                    error404();
+                }
+                break;
+            case 'loginPage':
+                if(VerifData::keysAndValues($get, ['result']) && $_GET['result'] === 'error')
+                {
+                    loginPage('danger', Message::errorId());
+                }
+                else
+                {
+                    loginPage();
+                }
+                break;
+            case 'attemptConnexion':
+                if(VerifData::keysAndValues($post, ['login', 'pwd']))
+                {
+                    attemptConnexion($post['login'], $post['pwd']);
+                }
+                else
+                {
+                    loginPage('warning', Message::emptyFields());
+                }
+                break;
+            case 'dashboard':
+                if(isset($_SESSION['id']))
+                {
+                    if(VerifData::keysAndValues($get, ['action', 'id']) && VerifData::isPositiveInt($get['id']))
+                    {
+                        switch ($_GET['action']) {
+                            case 'rmArticle':
+                                deleteArticle($get['id']);
+                                break;
+                            case 'validationComment':
+                                validateComment($get['id']);
+                                break;
+                            case 'rmComment':
+                                deleteComment($get['id']);
+                                break;
+                            default:
+                                dashboard();
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        dashboard();
+                    }
+                }
+                else
+                {
+                    error403();
+                }
+                break;
+            case 'dashboardArticle':
+                if(isset($_SESSION['id']))
+                {
+                    if(VerifData::keysAndValues($get, ['action', 'id']) && VerifData::isPositiveInt($get['id']))
+                    {
+                        switch ($_GET['action']) {
+                            case 'modification':
+                                dashboardArticle(null, null, true, $get['id']);
+                                break;
+                            case 'updateArticle':
+                                if(VerifData::keysAndValues($post, ['title', 'author', 'chapo', 'content']))
+                                {
+                                    updateArticle($get['id'], $post);
+                                }
+                                else
+                                {
+                                    dashboardArticle('warning', Message::emptyFields(), true, $get['id']);
+                                }
+                                break;
+                            default:
+                                dashboardArticle();
+                                break;
+                        }
+                    }
+                    elseif(VerifData::keysAndValues($get, ['action']))
+                    {
+                        switch ($_GET['action']) {
+                            case 'creation':
+                                dashboardArticle();
+                                break;
+                            case 'createArticle':
+                                if(VerifData::keysAndValues($post, ['title', 'author', 'chapo', 'content']))
+                                {
+                                    createArticle($post);
+                                }
+                                else
+                                {
+                                    dashboardArticle('warning', Message::emptyFields());
+                                }
+                                break;
+                            default:
+                                dashboardArticle();
+                                break;
+                        }
+                    }
+                    elseif(VerifData::keysAndValues($get, ['result']))
+                    {
+                        switch ($_GET['result']) {
+                            case 'created':
+                                dashboardArticle('success', Message::createdArticle());
+                                break;
+                            case 'modified':
+                                dashboardArticle('success', Message::modifiedArticle());
+                                break;
+                            default:
+                                dashboardArticle();
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        dashboardArticle();
+                    }
+                }
+                else
+                {
+                    error403();
+                }
+                break;
+            case 'deconnexion':
+                deconnexion();
+                break;
+            case 'error404':
+                error404();
+                break;
+            case 'error403':
+                error403();
+                break;
+            default:
+                error404();
+                break;
         }
     }
     else
     {
-        error403();
+        home();
     }
-}
-elseif(isset($_GET['deletePost']))
-{
-    if($check->verifFields($mySESSION, ['id']) === 'complete' && $check->positiveInt($mySESSION['id']))
-    {
-        if($check->verifFields($myGET, ['id']) === 'complete' && $check->positiveInt($myGET['id']))
-        {
-            deletePost($myGET['id']);
-        }
-        else
-        {
-            dashboard();
-        }
-    }
-    else
-    {
-        error403();
-    }
-}
-elseif(isset($_GET['deconnexion']))
-{
-    if($check->verifFields($mySESSION, ['id']) === 'complete' && $check->positiveInt($mySESSION['id']))
-    {
-        deconnexion();
-    }
-    else
-    {
-        error403();
-    }
-}
-elseif(isset($_GET['error404']))
-{
-    error404();
-}
-elseif(isset($_GET['error403']))
-{
-    error403();
-}
-else
-{
-    home();
+} catch (Exception $e) {
+    echo 'Erreur de connexion à la base de donnée.';
 }

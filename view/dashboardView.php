@@ -15,28 +15,28 @@ ob_start()
         </nav>
         <div class="tab-content" id="nav-tabContent">
             <div class="tab-pane fade show active" id="nav-general" role="tabpanel" aria-labelledby="nav-general-tab">
-                <p>Nombre d'articles dans mon blog : <?= PostManager::getNbPosts() ?></p>
-                <p>Nombre de commentaires en attentes de validation : <?= CommentManager::getNbCommentsNoValid() ?></p>
+                <p>Nombre d'articles dans mon blog : <?= $articleManager->getNbArticles() ?></p>
+                <p>Nombre de commentaires en attentes de validation : <?= $commentManager->getNbCommentsNoValid() ?></p>
             </div>
             <div class="tab-pane fade" id="nav-articles" role="tabpanel" aria-labelledby="nav-articles-tab">
-                <a href="index.php?dashboardPost" class="btn btn-outline-primary-custom">Créer un article</a>
-                <?php while($data = $listPosts->fetch()): ?>
+                <a href="index.php?page=dashboardArticle&action=creation" class="btn btn-outline-primary-custom">Créer un article</a>
+                <?php foreach($listArticles as $key => $article): ?>
                 <div class="bloc-data">
-                    <p><b><?= $data['title'] ?></b></p>
-                    <a href="index.php?dashboardPost&id=<?= $data['id'] ?>" class="modify">Modifier</a>
-                    <a href="index.php?deletePost&id=<?= $data['id'] ?>" class="delete">Supprimer</a>
+                    <p><b><?= $article->getTitle() ?></b></p>
+                    <a href="index.php?page=dashboardArticle&action=modification&id=<?= $article->getId() ?>" class="modify">Modifier</a>
+                    <a href="index.php?page=dashboard&action=rmArticle&id=<?= $article->getId() ?>" class="delete">Supprimer</a>
                 </div>
-                <?php endwhile ?>
+                <?php endforeach ?>
             </div>
             <div class="tab-pane fade" id="nav-commentaires" role="tabpanel" aria-labelledby="nav-commentaires-tab">
-            <?php while($data = $listCommentsNoValid->fetch()): ?>
+            <?php foreach($commentsNoValidWTitleArticle as $key => $commentNoValid): ?>
                 <div class="bloc-data">
-                    <p><b><?= $data['name'] ?></b></p>
-                    <p> <?= $data['comment'] ?></p>
-                    <a href="index.php?validComment&id=<?= $data['id'] ?>" class="modify">Valider</a>
-                    <a href="index.php?deleteComment&id=<?= $data['id'] ?>" class="delete">Supprimer</a>
+                    <p><b><?= $commentNoValid->getName() ?></b> <em>a laissé un commentaire sur l'article : <?= $commentNoValid->getTitle() ?></em></p>
+                    <p> <?= nl2br($commentNoValid->getComment()) ?></p>
+                    <a href="index.php?page=dashboard&action=validationComment&id=<?= $commentNoValid->getId() ?>" class="modify">Valider</a>
+                    <a href="index.php?page=dashboard&action=rmComment&id=<?= $commentNoValid->getId() ?>" class="delete">Supprimer</a>
                 </div>
-                <?php endwhile ?>
+            <?php endforeach ?>
             </div>
         </div>
     </div>

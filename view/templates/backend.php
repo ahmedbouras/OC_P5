@@ -19,7 +19,7 @@
                         <a href="index.php" class="btn btn-primary-custom" role="button">Voir mon site</a>
                     </div>
                     <div class="col-6 d-flex justify-content-start">
-                        <a href="index.php?deconnexion" class="btn btn-danger" role="button">Se déconnecter</a>
+                        <a href="index.php?page=deconnexion" class="btn btn-danger" role="button">Se déconnecter</a>
                     </div>
                 </div>
             </nav>

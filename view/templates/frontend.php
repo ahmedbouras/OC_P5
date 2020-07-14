@@ -14,7 +14,9 @@
 
         <header class="row">
             <nav class="col-12 navbar fixed-top navbar-expand-lg navbar-light bg-white">
-                <a class="navbar-brand" href="index.php">BRAND</a>
+                <a class="navbar-brand" href="index.php">
+                <img src="public/images/AB_logo_rmbg.png" height="40" alt="logo du site">
+                </a>
 
                 <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -25,17 +27,17 @@
                             <a class="nav-link" href="index.php">Accueil</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="index.php?blog">Blog</a>
+                            <a class="nav-link" href="index.php?page=blog">Blog</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="index.php#contact-form">Contact</a>
                         </li>
                         <?php if(isset($_SESSION['id'])): ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="index.php?dashboard">Tableau de bord</a>
+                            <a class="nav-link" href="index.php?page=dashboard">Tableau de bord</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="index.php?deconnexion">Se deconnecter</a>
+                            <a class="nav-link" href="index.php?page=deconnexion">Se deconnecter</a>
                         </li>
                         <?php endif ?>
                     </ul>
@@ -49,10 +51,10 @@
             <div class="col-md-6 align-self-center">
                 <ul class="d-flex justify-content-center">
                     <li>
-                        <a href="">Mon CV</a>
+                        <a href="#">Mon CV</a>
                     </li>
                     <li>
-                        <a href="index.php?admin"> Interface Admin</a>
+                        <a href="index.php?page=loginPage"> Interface Admin</a>
                     </li>
                 </ul>
             </div>

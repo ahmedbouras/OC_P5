@@ -1,44 +1,73 @@
 <?php
 class CommentManager extends DBManager
 {
-    public static function getNbCommentsNoValid()
+    public function __construct()
     {
-        $request = self::$db->prepare("SELECT COUNT(*) FROM comments WHERE valid = ?");
-        $request->execute([0]);
-        return $request->fetch()[0];
+        $this->dbConnect();
     }
-    public static function getCommentsNoValid()
+    public function sendComment(Comment $comment)
     {
-        $request = self::$db->prepare("SELECT * FROM comments WHERE valid = ?");
-        $request->execute([0]);
-        return $request;
+        $req = $this->db->prepare("INSERT INTO comments(article_id, name, comment)
+                                    VALUES(?, ?, ?)");
+        $req->execute([$comment->getArticle_id(), $comment->getName(), $comment->getComment()]);
     }
-    public static function getCommentsPost($idPost)
+    public function getComment($idComment)
     {
-        $request = self::$db->prepare(" SELECT * FROM comments WHERE valid = ? AND post_id = ?
-                                        ORDER BY comment_date DESC");
-        $request->execute([1, $idPost]);
-        return $request;
+        $req = $this->db->prepare("SELECT * FROM comments WHERE id = ?");
+        $req->execute([$idComment]);
+        if($data = $req->fetch(PDO::FETCH_ASSOC))
+        {
+            return new Comment($data);
+        }
+        else
+        {
+            return false;
+        }
     }
-    public static function sentComment($idPost, $name, $comment)
+    public function getCommentsArticleValid($idArticle)
     {
-        $request = self::$db->prepare(" INSERT INTO comments(post_id, name, comment, valid)
-                                        VALUES(?, ?, ?, ?)");
-        $request->execute([$idPost, $name, $comment, 0]);
+        $req = $this->db->prepare("SELECT * FROM comments
+                                    WHERE valid = ? AND article_id = ? ORDER BY comment_date DESC");
+        $req->execute([1, $idArticle]);
+        $listComments = [];
+        while($data = $req->fetch(PDO::FETCH_ASSOC))
+        {
+            $listComments[] = new Comment($data);
+        }
+        return $listComments;
     }
-    public static function validateComment($idComment)
+    public function getCommentsNoValidWTitleArticle()
     {
-        $request = self::$db->prepare("UPDATE comments SET valid = ? WHERE id = ?");
-        $request->execute([1, $idComment]);
+        $req = $this->db->query("SELECT c.id, c.name, c.comment, c.comment_date, a.title
+                                    FROM comments AS c
+                                    INNER JOIN articles AS a
+                                    ON c.article_id = a.id
+                                    WHERE valid = 0");
+        $commentsNoValidWTitleArticle = [];
+        while($data = $req->fetch(PDO::FETCH_ASSOC))
+        {
+            $commentsNoValidWTitleArticle[] = new Comment($data);
+        }
+        return $commentsNoValidWTitleArticle;
     }
-    public static function deleteComment($idComment)
+    public function validateComment($idComment)
     {
-        $request = self::$db->prepare("DELETE FROM comments WHERE id = ?");
-        $request->execute([$idComment]);
+        $req = $this->db->prepare("UPDATE comments SET valid = 1 WHERE id = ?");
+        $req->execute([$idComment]);
     }
-    public static function deleteCommentsPost($idPost)
+    public function deleteComment($idComment)
     {
-        $request = self::$db->prepare("DELETE FROM comments WHERE post_id = ?");
-        $request->execute([$idPost]);
+        $req = $this->db->prepare("DELETE FROM comments WHERE id = ?");
+        $req->execute([$idComment]);
+    }
+    public function deleteCommentArticle($idArticle)
+    {
+        $req = $this->db->prepare("DELETE FROM comments WHERE article_id = ?");
+        $req->execute([$idArticle]);
+    }
+    public function getNbCommentsNoValid()
+    {
+        $req = $this->db->query("SELECT COUNT(*) FROM comments WHERE valid = 0");
+        return $req->fetch()[0];
     }
 }

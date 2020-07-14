@@ -40,7 +40,7 @@ ob_start()
 
 <section id="contact-form" class="row">
     <div class="offset-md-3 col-md-6 offset-sm-1 col-sm-10 text-center">
-        <form action="index.php?contact#contact-form" method="post">
+        <form action="index.php?page=home#contact-form" method="post">
             <h3>Contactez-moi</h3>
             <?php if(isset($message)): ?>
             <div class="alert alert-<?= $alert ?>" role="alert"> <?= $message ?> </div>

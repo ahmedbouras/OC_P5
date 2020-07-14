@@ -1,89 +1,97 @@
 <?php
 function attemptConnexion($login, $pwd)
 {
-    DBManager::dbconnect();
-    AdminManager::setId($login);
-    if(AdminManager::getId())
+    $userManager = new UserManager;
+    if($admin = $userManager->getUser($login))
     {
-        if(password_verify($pwd, AdminManager::getPwd($login)))
+        if(password_verify($pwd, $admin->getPasswd()))
         {
-            require 'view/adminInterfaceView.php';
-            $_SESSION['id'] = AdminManager::getId();
-            header("Location: index.php?dashboard");
+            $_SESSION['id'] = $admin->getId();
+            header("Location: index.php?page=dashboard");
         }
         else
         {
-            header("Location: index.php?attemptConnexion=error");
+            header("Location: index.php?page=loginPage&result=error");
         }
     }
     else
     {
-        header("Location: index.php?attemptConnexion=error");
+        header("Location: index.php?page=loginPage&result=error");
     }
 }
 function dashboard()
 {
-    DBManager::dbconnect();
-    $listPosts = PostManager::getPosts();
-    $listCommentsNoValid = CommentManager::getCommentsNoValid();
+    $articleManager = new ArticleManager;
+    $commentManager = new CommentManager;
+    $listArticles = $articleManager->getAllArticles();
+    $commentsNoValidWTitleArticle = $commentManager->getCommentsNoValidWTitleArticle();
     require 'view/dashboardView.php';
 }
-function validComment($idComment)
+function validateComment($idComment)
 {
-    DBManager::dbConnect();
-    CommentManager::validateComment($idComment);
-    header("Location: index.php?dashboard");
+    $commentManager = new CommentManager;
+    if($comment = $commentManager->getComment($idComment))
+    {
+        $commentManager->validateComment($comment->getId());
+    }
+    header("Location: index.php?page=dashboard");
 }
 function deleteComment($idComment)
 {
-    DBManager::dbConnect();
-    CommentManager::deleteComment($idComment);
-    header("Location: index.php?dashboard");
+    $commentManager = new CommentManager;
+    if($comment = $commentManager->getComment($idComment))
+    {
+        $commentManager->deleteComment($comment->getId());
+    }
+    header("Location: index.php?page=dashboard");
 }
-function dashboardPost($alert = null, $message = null, $modification = false, $idPost = null)
+function dashboardArticle($alert = null, $message = null, $modification = false, $idArticle = null)
 {
     if($modification)
     {
-        DBManager::dbconnect();
-        if(PostManager::existingId($idPost))
+        $articleManager = new ArticleManager;
+        if(!$article = $articleManager->getArticle($idArticle))
         {
-            $post = PostManager::getPost($idPost);
-        }
-        else
-        {
-            header("Location: index.php?dashboardPost");
+            header("Location: index.php?page=dashboardArticle&action=creation");
         }
     }
-    require 'view/dashboardPostView.php';
+    require 'view/dashboardArticleView.php';
 }
-function createPost($title, $author, $chapo, $content)
+function createArticle(array $post)
 {
-    DBManager::dbconnect();
-    PostManager::createPost($title, $author, $chapo, $content);
-    header("Location: index.php?dashboardPost&created");
+    $article = new Article($post);
+    $articleManager = new ArticleManager;
+    $articleManager->createArticle($article);
+    header("Location: index.php?page=dashboardArticle&result=created");
 }
-function modifyPost($idPost, $title, $author, $chapo, $content)
+function updateArticle($idArticle, array $post)
 {
-    DBManager::dbconnect();
-    if(PostManager::existingId($idPost))
+    $articleManager = new ArticleManager;
+    if($currentArticle = $articleManager->getArticle($idArticle))
     {
-        PostManager::modifyPost($idPost, $title, $author, $chapo, $content);
-        header("Location: index.php?dashboardPost&modified");
+        $article = new Article($post);
+        $articleManager->updateArticle($idArticle, $article);
+        header("Location: index.php?page=dashboardArticle&result=modified");
     }
     else
     {
-        header("Location: index.php?dashboardPost");
+        header("Location: index.php?page=dashboardArticle");
     }
 }
-function deletePost($idPost)
+function deleteArticle($idArticle)
 {
-    DBManager::dbconnect();
-    if(PostManager::existingId($idPost))
+    $articleManager = new ArticleManager;
+    if($article = $articleManager->getArticle($idArticle))
     {
-        PostManager::deletePost($idPost);
-        CommentManager::deleteCommentsPost($idPost);
+        $commentManager = new CommentManager;
+        $articleManager->deleteArticle($article->getId());
+        $commentsArticle = $commentManager->getCommentsArticle($article->getId());
+        foreach($commentsArticle as $key => $comment)
+        {
+            $commentManager->deleteComment($comment->getId());
+        }
     }
-    header("Location: index.php?dashboard");
+    header("Location: index.php?page=dashboard");
 }
 function deconnexion()
 {

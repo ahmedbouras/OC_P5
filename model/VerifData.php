@@ -1,68 +1,23 @@
 <?php
 class VerifData
 {
-    private $_cleanGET;
-    private $_cleanPOST;
-    private $_cleanSESSION;
-
-    public function __construct($xssGET, $xssPOST, $xssSESSION)
+    public static function keysAndValues(array $superglobal, array $myKeys): bool
     {
-        $this->setGET($xssGET);
-        $this->setPOST($xssPOST);
-        $this->setSESSION($xssSESSION);
-    }
-    public function getGET() : array
-    {
-        return $this->_cleanGET;
-    }
-    public function getPOST() : array
-    {
-        return $this->_cleanPOST;
-    }
-    public function getSESSION() : array
-    {
-        return $this->_cleanSESSION;
-    }
-    public function setGET(array $xssGET)
-    {
-        $this->_cleanGET = array_map('htmlspecialchars', $xssGET);
-    }
-    public function setPOST(array $xssPOST)
-    {
-        $this->_cleanPOST = array_map('htmlspecialchars', $xssPOST);
-    }
-    public function setSESSION(array $xssSESSION)
-    {
-        $this->_cleanSESSION = array_map('htmlspecialchars', $xssSESSION);
-    }
-    public function verifFields(array $superglobal, array $myKeys) : string
-    {
-        if(empty($superglobal))
+        foreach($myKeys as $key => $value)
         {
-            return 'nonexistant';
-        }
-        else
-        {
-            foreach($myKeys as $value)
+            if(!array_key_exists($value, $superglobal) || empty($superglobal[$value]))
             {
-                if(!array_key_exists($value, $superglobal))
-                {
-                    return 'nonexistant';
-                }
-                if(!isset($superglobal[$value]) || empty($superglobal[$value]))
-                {
-                    return 'empty';
-                }
+                return false;
             }
-            return 'complete';
         }
+        return true;
     }
-    public function verifEmail($email)
+    public static function isValidEmail(string $email): bool
     {
         return preg_match("#^[a-z0-9.-_]+@[a-z0-9.-_]{2,}\.[a-z]{2,4}$#", $email);
     }
-    public function positiveInt($idPost)
+    public static function isPositiveInt($info): bool
     {
-        return preg_match("#^[1-9][0-9]*$#", $idPost);
+        return preg_match("#^[1-9][0-9]*$#", $info);
     }
 }

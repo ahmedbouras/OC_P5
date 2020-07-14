@@ -6,12 +6,12 @@ ob_start()
 
 <div id="bloc-dashboard" class="row">
     <div class="offset-sm-1 col-sm-10">
-        <a href="index.php?dashboard"><< Revenir sur le tableau de bord</a>
+        <a href="index.php?page=dashboard"><< Revenir sur le tableau de bord</a>
     </div class="row">
         <form   <?php if($modification): ?>
-        action="index.php?modificationPost&id=<?= $post['id'] ?>"
+        action="index.php?page=dashboardArticle&action=updateArticle&id=<?= $article->getId() ?>"
                 <?php else: ?>
-        action="index.php?creationPost"
+        action="index.php?page=dashboardArticle&action=createArticle"
                 <?php endif ?>
         method="post" class="offset-sm-1 col-sm-10 offset-md-2 col-md-8">
             <?php if(isset($message)): ?>
@@ -22,7 +22,7 @@ ob_start()
                     <label>Titre de l'article</label>
                     <input type="text" class="form-control" name="title"
                         <?php if($modification): ?>
-                        value="<?= $post['title'] ?>"
+                        value="<?= $article->getTitle() ?>"
                         <?php endif ?>
                     required>
                 </div>
@@ -30,25 +30,21 @@ ob_start()
                     <label>Auteur</label>
                     <input type="text" class="form-control" name="author" 
                         <?php if($modification): ?>
-                        value="<?= $post['author'] ?>"
+                        value="<?= $article->getAuthor() ?>"
                         <?php endif ?>
                     required>
                 </div>
             </div>
             <div class="form-group">
                 <label>Chapô</label>
-                <textarea class="form-control" rows="2" name="chapo" required><?php if($modification):
-                    echo $post['chapo']; 
-                    endif ?>
-                </textarea>
+                <textarea class="form-control" rows="2" name="chapo"
+                required><?php if($modification): echo $article->getChapo(); endif ?></textarea>
             </div>
             <div class="form-group">
                 <label>Contenu de l'article</label>
                 <div class="form-group">
-                <textarea class="form-control" rows="30" name="content" required><?php if($modification):
-                    echo $post['content']; 
-                    endif ?>
-                </textarea>
+                <textarea class="form-control" rows="30" name="content"
+                required><?php if($modification): echo $article->getContent(); endif ?></textarea>
             </div>
             <div class="row">
                 <button type="submit" class="btn btn-primary-custom btn-lg offset-1 col-10">Envoyer</button>
