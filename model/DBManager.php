@@ -1,14 +1,22 @@
 <?php
 class DBManager
 {
-    protected static $db;
+    protected $db;
 
-    private static $_DSN = "mysql:host=localhost;dbname=oc_p5;port=3308;charset=utf8";
-    private static $_LOGIN = "root";
-    private static $_PWD = "";
+    const DSN = "mysql:host=localhost;dbname=oc_p5;port=3308;charset=utf8";
+    const LOGIN = "root";
+    const PWD = "";
 
-    public static function dbConnect()
+    public function dbConnect()
     {
-        self::$db = new PDO(self::$_DSN, self::$_LOGIN, self::$_PWD);
+        if($this->db = new PDO(self::DSN, self::LOGIN, self::PWD))
+        {
+            $this->db = new PDO(self::DSN, self::LOGIN, self::PWD);
+        }
+        else
+        {
+            throw new Exception('Erreur de Connexion à la base de donnée.');
+        }
+        
     }
 }

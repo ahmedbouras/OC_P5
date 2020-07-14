@@ -4,38 +4,41 @@ function home($alert = null, $message = null)
 {
     require 'view/homeView.php';
 }
-function sendMessage($name, $message)
+function sendMessage(array $post)
 {
-    mail('ahmed.bouras@outlook.fr', 'message-P5', $message, $name);
+    mail('ahmed.bouras@outlook.fr', 'message-P5', $post['message'], $post['name']);
     header('Location: index.php?page=home&result=success');
 }
 function blog()
 {
-    DBManager::dbconnect();
-    $listPosts = PostManager::getPosts();
+    $articleManager = new ArticleManager;
+    $listArticles = $articleManager->getAllArticles();
     require 'view/blogView.php';
 }
-function post($idPost, $alert = null, $message = null)
+function article($idArticle, $alert = null, $message = null)
 {
-    DBManager::dbconnect();
-    if(PostManager::existingId($idPost))
+    $articleManager = new ArticleManager;
+    if($article = $articleManager->getArticle($idArticle))
     {
-        $post = PostManager::getPost($idPost);
-        $commentsPost = CommentManager::getCommentsPost($idPost);
-        require 'view/postView.php';
+        $commentManager = new CommentManager;
+        $listCommentsArticleValid = $commentManager->getCommentsArticleValid($idArticle);
+        require 'view/articleView.php';
     }
     else
     {
         header("Location: index.php?page=error404");
     }
 }
-function comment($idPost, $name, $comment)
+function comment($idArticle, array $post)
 {
-    DBManager::dbconnect();
-    if(PostManager::existingId($idPost))
+    $articleManager = new ArticleManager;
+    if($article = $articleManager->getArticle($idArticle))
     {
-        CommentManager::sentComment($idPost, $name, $comment);
-        header("Location: index.php?page=post&id=$idPost&action=comment&result=success");
+        $post['article_id'] = $article->getId();
+        $comment = new Comment($post);
+        $commentManager = new CommentManager;
+        $commentManager->sendComment($comment);
+        header("Location: index.php?page=article&id=$idArticle&action=commentSent");
     }
     else
     {

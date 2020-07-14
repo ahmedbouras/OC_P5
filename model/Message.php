@@ -6,8 +6,8 @@ class Message
     private static $_messageSent = "Votre message a été envoyé avec succès !";
     private static $_errorEmail = "Veuillez saisir un email valide.";
     private static $_commentSent = "Votre commentaire a bien été envoyé. Il sera soumis à validation.";
-    private static $_createdPost = "Votre article a bien été créé !";
-    private static $_modifiedPost = "Votre article a bien été modifié !";
+    private static $_createdArticle = "Votre article a bien été créé !";
+    private static $_modifiedArticle = "Votre article a bien été modifié !";
 
     public static function errorId()
     {
@@ -29,12 +29,12 @@ class Message
     {
         return self::$_commentSent;
     }
-    public static function createdPost()
+    public static function createdArticle()
     {
-        return self::$_createdPost;
+        return self::$_createdArticle;
     }
-    public static function modifiedPost()
+    public static function modifiedArticle()
     {
-        return self::$_modifiedPost;
+        return self::$_modifiedArticle;
     }
 }

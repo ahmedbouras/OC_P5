@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Lato&family=Open+Sans:wght@600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="public/css/adminInterface.css">
+    <link rel="stylesheet" href="public/css/loginPage.css">
     <title>Se connecter</title>
 </head>
 <body>
@@ -13,7 +13,9 @@
     <div class="container-fluid text-center">
         <div class="row">
             <div id="bloc-logo" class="col-12 d-flex align-items-end justify-content-center">
-                <a href="index.php">BRAND</a>
+                <a href="index.php">
+                <img src="public/images/AB_logo_rmbg.png" height="40" alt="logo du site">
+                </a>
             </div>
             <div id="bloc-connexion" class="col-12 d-flex align-items-center justify-content-center">
                 <form action="index.php?page=attemptConnexion" method="post" class="card">

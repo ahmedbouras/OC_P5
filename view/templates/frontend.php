@@ -14,7 +14,9 @@
 
         <header class="row">
             <nav class="col-12 navbar fixed-top navbar-expand-lg navbar-light bg-white">
-                <a class="navbar-brand" href="index.php">BRAND</a>
+                <a class="navbar-brand" href="index.php">
+                <img src="public/images/AB_logo_rmbg.png" height="40" alt="logo du site">
+                </a>
 
                 <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
