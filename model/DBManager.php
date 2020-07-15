@@ -9,14 +9,10 @@ class DBManager
 
     public function dbConnect()
     {
-        if($this->db = new PDO(self::DSN, self::LOGIN, self::PWD))
+        $this->db = new PDO(self::DSN, self::LOGIN, self::PWD);
+        if(!$this->db)
         {
-            $this->db = new PDO(self::DSN, self::LOGIN, self::PWD);
+            throw new Exception('Erreur de Connexion à la base de donnée.');   
         }
-        else
-        {
-            throw new Exception('Erreur de Connexion à la base de donnée.');
-        }
-        
     }
 }

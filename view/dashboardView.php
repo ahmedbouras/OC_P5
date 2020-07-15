@@ -31,7 +31,7 @@ ob_start()
             <div class="tab-pane fade" id="nav-commentaires" role="tabpanel" aria-labelledby="nav-commentaires-tab">
             <?php foreach($commentsNoValidWTitleArticle as $key => $commentNoValid): ?>
                 <div class="bloc-data">
-                    <p><b><?= $commentNoValid->getName() ?></b> <em>a laissé un commentaire sur l'article : <?= $commentNoValid->getTitle() ?></em></p>
+                    <p><b><?= $commentNoValid->getName() ?></b> <em>a laissé un commentaire sur l'article : <?= $commentNoValid->getTitle_article() ?></em></p>
                     <p> <?= nl2br($commentNoValid->getComment()) ?></p>
                     <a href="index.php?page=dashboard&action=validationComment&id=<?= $commentNoValid->getId() ?>" class="modify">Valider</a>
                     <a href="index.php?page=dashboard&action=rmComment&id=<?= $commentNoValid->getId() ?>" class="delete">Supprimer</a>

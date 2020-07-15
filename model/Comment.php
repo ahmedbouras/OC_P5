@@ -1,32 +1,19 @@
 <?php
 class Comment
 {
-    private $_id;
+    use Hydratation;
+    use Attribute;
+
     private $_article_id;
     private $_name;
     private $_comment;
     private $_comment_date;
     private $_valid;
-    private $_title; // The represention of the article's title associate to this comment
+    private $_title_article; // Article's title associate to this comment
 
     public function __construct(array $data)
     {
         $this->hydrate($data);
-    }
-    public function hydrate(array $data)
-    {
-        foreach($data as $key => $value)
-        {
-            $method = 'set' . ucfirst($key);
-            if(method_exists($this, $method))
-            {
-                $this->$method($value);
-            }
-        }
-    }
-    public function getId()
-    {
-        return $this->_id;
     }
     public function getArticle_id()
     {
@@ -48,13 +35,9 @@ class Comment
     {
         return $this->_valid;
     }
-    public function getTitle()
+    public function getTitle_article()
     {
-        return $this->_title;
-    }
-    public function setId($id)
-    {
-        $this->_id = $id;
+        return $this->_title_article;
     }
     public function setArticle_id($article_id)
     {
@@ -76,8 +59,8 @@ class Comment
     {
         $this->_valid = $valid;
     }
-    public function setTitle($title)
+    public function setTitle_article($title)
     {
-        $this->_title = $title;
+        $this->_title_article = $title;
     }
 }
