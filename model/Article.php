@@ -1,7 +1,9 @@
 <?php
 class Article
 {
-    private $_id;
+    use Hydratation;
+    use Attribute;
+
     private $_title;
     private $_author;
     private $_chapo;
@@ -12,21 +14,6 @@ class Article
     public function __construct(array $data)
     {
         $this->hydrate($data);
-    }
-    public function hydrate(array $data)
-    {
-        foreach($data as $key => $value)
-        {
-            $method = 'set' . ucfirst($key);
-            if(method_exists($this, $method))
-            {
-                $this->$method($value);
-            }
-        }
-    }
-    public function getId()
-    {
-        return $this->_id;
     }
     public function getTitle()
     {
@@ -51,10 +38,6 @@ class Article
     public function getLatest_update_fr()
     {
         return $this->_latest_update_fr;
-    }
-    public function setId($id)
-    {
-        $this->_id = $id;
     }
     public function setTitle($title)
     {

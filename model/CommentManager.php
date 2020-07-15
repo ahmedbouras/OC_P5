@@ -24,6 +24,19 @@ class CommentManager extends DBManager
             return false;
         }
     }
+    public function getCommentArticle($idArticle)
+    {
+        $req = $this->db->prepare("SELECT * FROM comments WHERE article_id = ?");
+        $req->execute([$idComment]);
+        if($data = $req->fetch(PDO::FETCH_ASSOC))
+        {
+            return new Comment($data);
+        }
+        else
+        {
+            return false;
+        }
+    }
     public function getCommentsArticleValid($idArticle)
     {
         $req = $this->db->prepare("SELECT * FROM comments
@@ -38,7 +51,7 @@ class CommentManager extends DBManager
     }
     public function getCommentsNoValidWTitleArticle()
     {
-        $req = $this->db->query("SELECT c.id, c.name, c.comment, c.comment_date, a.title
+        $req = $this->db->query("SELECT c.id, c.name, c.comment, c.comment_date, a.title AS title_article
                                     FROM comments AS c
                                     INNER JOIN articles AS a
                                     ON c.article_id = a.id

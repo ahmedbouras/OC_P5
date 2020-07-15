@@ -6,7 +6,11 @@ function home($alert = null, $message = null)
 }
 function sendMessage(array $post)
 {
-    mail('ahmed.bouras@outlook.fr', 'message-P5', $post['message'], $post['name']);
+    $to = 'ahmed.bouras@outlook.fr';
+    $subject = $post['name'];
+    $message = $post['message'];
+    $headers = ['From' => $post['email'], 'Reply-To' => $post['email']];
+    mail($to, $subject, $message, $headers);
     header('Location: index.php?page=home&result=success');
 }
 function blog()
