@@ -44,5 +44,5 @@ ob_start()
 
 <?php
 $content = ob_get_clean();
-require 'templates/frontend.php';
+include 'templates/frontend.php';
 ?>

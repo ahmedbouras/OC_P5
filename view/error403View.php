@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="public/css/error.css">
     <title>Error 403</title>
 </head>
-<body id="error403">
+<body>
     <div class="container-fluid">
         <div class="row text-center">
             <h1 class="col-12">ERREUR 403</h1>

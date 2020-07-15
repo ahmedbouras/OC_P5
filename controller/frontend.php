@@ -2,7 +2,7 @@
 
 function home($alert = null, $message = null)
 {
-    require 'view/homeView.php';
+    include 'view/homeView.php';
 }
 function sendMessage(array $post)
 {
@@ -17,7 +17,7 @@ function blog()
 {
     $articleManager = new ArticleManager;
     $listArticles = $articleManager->getAllArticles();
-    require 'view/blogView.php';
+    include 'view/blogView.php';
 }
 function article($idArticle, $alert = null, $message = null)
 {
@@ -26,7 +26,7 @@ function article($idArticle, $alert = null, $message = null)
     {
         $commentManager = new CommentManager;
         $listCommentsArticleValid = $commentManager->getCommentsArticleValid($idArticle);
-        require 'view/articleView.php';
+        include 'view/articleView.php';
     }
     else
     {
@@ -51,13 +51,17 @@ function comment($idArticle, array $post)
 }
 function loginPage($alert = null, $message = null)
 {
-    require 'view/loginPageView.php';
+    include 'view/loginPageView.php';
 }
 function error404()
 {
-    require 'view/error404View.php';
+    include 'view/error404View.php';
 }
 function error403()
 {
-    require 'view/error403View.php';
+    include 'view/error403View.php';
+}
+function errorDB()
+{
+    include 'view/errorDB.php';
 }
