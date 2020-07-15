@@ -25,7 +25,7 @@ function dashboard()
     $commentManager = new CommentManager;
     $listArticles = $articleManager->getAllArticles();
     $commentsNoValidWTitleArticle = $commentManager->getCommentsNoValidWTitleArticle();
-    require 'view/dashboardView.php';
+    include 'view/dashboardView.php';
 }
 function validateComment($idComment)
 {
@@ -55,7 +55,7 @@ function dashboardArticle($alert = null, $message = null, $modification = false,
             header("Location: index.php?page=dashboardArticle&action=creation");
         }
     }
-    require 'view/dashboardArticleView.php';
+    include 'view/dashboardArticleView.php';
 }
 function createArticle(array $post)
 {

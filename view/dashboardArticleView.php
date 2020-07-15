@@ -54,5 +54,5 @@ ob_start()
 
 <?php
 $content = ob_get_clean();
-require 'templates/backend.php';
+include 'templates/backend.php';
 ?>

@@ -2,20 +2,20 @@
 session_start();
 spl_autoload_register(function ($className)
 {
-    require "model/$className.php";
+    include "model/$className.php";
 });
-require 'controller/frontend.php';
-require 'controller/backend.php';
+include 'controller/frontend.php';
+include 'controller/backend.php';
 $get = array_map('htmlspecialchars', $_GET);
 $post = array_map('htmlspecialchars', $_POST);
 $session = array_map('htmlspecialchars', $_SESSION);
 
 try {
-    if(isset($_GET['page']))
+    if(isset($get['page']))
     {
-        switch ($_GET['page']) {
+        switch ($get['page']) {
             case 'home':
-                if(VerifData::keysAndValues($get, ['result']) && $_GET['result'] === 'success')
+                if(VerifData::keysAndValues($get, ['result']) && $get['result'] === 'success')
                 {
                     home('success', Message::messageSent());
                 }
@@ -46,7 +46,7 @@ try {
                 {
                     if(VerifData::keysAndValues($get, ['action']))
                     {
-                        switch ($_GET['action']) {
+                        switch ($get['action']) {
                             case 'comment':
                                 if(VerifData::keysAndValues($post, ['name', 'comment']))
                                 {
@@ -76,7 +76,7 @@ try {
                 }
                 break;
             case 'loginPage':
-                if(VerifData::keysAndValues($get, ['result']) && $_GET['result'] === 'error')
+                if(VerifData::keysAndValues($get, ['result']) && $get['result'] === 'error')
                 {
                     loginPage('danger', Message::errorId());
                 }
@@ -100,7 +100,7 @@ try {
                 {
                     if(VerifData::keysAndValues($get, ['action', 'id']) && VerifData::isPositiveInt($get['id']))
                     {
-                        switch ($_GET['action']) {
+                        switch ($get['action']) {
                             case 'rmArticle':
                                 deleteArticle($get['id']);
                                 break;
@@ -130,7 +130,7 @@ try {
                 {
                     if(VerifData::keysAndValues($get, ['action', 'id']) && VerifData::isPositiveInt($get['id']))
                     {
-                        switch ($_GET['action']) {
+                        switch ($get['action']) {
                             case 'modification':
                                 dashboardArticle(null, null, true, $get['id']);
                                 break;
@@ -151,7 +151,7 @@ try {
                     }
                     elseif(VerifData::keysAndValues($get, ['action']))
                     {
-                        switch ($_GET['action']) {
+                        switch ($get['action']) {
                             case 'creation':
                                 dashboardArticle();
                                 break;
@@ -172,7 +172,7 @@ try {
                     }
                     elseif(VerifData::keysAndValues($get, ['result']))
                     {
-                        switch ($_GET['result']) {
+                        switch ($get['result']) {
                             case 'created':
                                 dashboardArticle('success', Message::createdArticle());
                                 break;
@@ -213,5 +213,5 @@ try {
         home();
     }
 } catch (Exception $e) {
-    echo 'Erreur de connexion à la base de donnée.';
+    errorDB();
 }

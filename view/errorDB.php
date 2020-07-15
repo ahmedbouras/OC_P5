@@ -6,13 +6,13 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Lato&family=Open+Sans:wght@600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="public/css/error.css">
-    <title>Error 404</title>
+    <title>Error 403</title>
 </head>
 <body>
     <div class="container-fluid">
         <div class="row text-center">
-            <h1 class="col-12">ERREUR 404</h1>
-            <p class="col-12">La page que vous recherchez n'éxiste pas...</p>
+            <h1 class="col-12">OOPS !</h1>
+            <p class="col-12">Erreur de connexion à la base de donnée.</p>
             <a href="index.php" class="col-12">Revenir sur le site</a>
         </div>
     </div>
