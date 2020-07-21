@@ -24,18 +24,16 @@ class CommentManager extends DBManager
             return false;
         }
     }
-    public function getCommentArticle($idArticle)
+    public function getCommentsArticle($idArticle)
     {
         $req = $this->db->prepare("SELECT * FROM comments WHERE article_id = ?");
-        $req->execute([$idComment]);
-        if($data = $req->fetch(PDO::FETCH_ASSOC))
+        $req->execute([$idArticle]);
+        $commentsArticle = [];
+        while($data = $req->fetch(PDO::FETCH_ASSOC))
         {
-            return new Comment($data);
+            $commentsArticle[] = new Comment($data);
         }
-        else
-        {
-            return false;
-        }
+        return $commentsArticle;
     }
     public function getCommentsArticleValid($idArticle)
     {
