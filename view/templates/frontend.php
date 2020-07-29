@@ -51,7 +51,7 @@
             <div class="col-md-6 align-self-center">
                 <ul class="d-flex justify-content-center">
                     <li>
-                        <a href="#">Mon CV</a>
+                        <a href="public/cv_ahmedbouras.pdf">Mon CV</a>
                     </li>
                     <li>
                         <a href="index.php?page=loginPage"> Interface Admin</a>
