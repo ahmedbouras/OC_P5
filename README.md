@@ -19,7 +19,7 @@ During the summer of 2020
 
 ## The Progression of the project ?
 
-This project is finish
+This project is done
 
 ## How is it made it ?
 
